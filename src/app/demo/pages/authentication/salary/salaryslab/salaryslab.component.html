@@ -1,0 +1,124 @@
+
+    <div class="salary-slab-main">
+        <form [formGroup]="salarySlabForm" (ngSubmit)="salarySlabSubmit()">
+            <div class="slab-salary">
+                <div class="input-section-salary">
+                    <p>Slab Name</p>
+                    <input type="text" class="salary" name="slabName" formControlName="slabName" class="form-control">
+                </div>
+                <div class="pf-exempt">
+                    <p>Is PF Exempt:</p>
+                    <div class="toggle-container">
+                        <!-- <p>Is PF Exempt</p> -->
+                        <input type="checkbox" id="toggle-btn" name="pfExempt" formControlName="pfExempt" (change)="onpfExemptChange($event)">
+                        <label for="toggle-btn" class="toggle-label"></label>
+                    </div>
+                </div>
+                <div class="pf-exempt">
+                    <p>Is ESI Exempt:</p>
+                    <div class="toggle-container">
+                        <!-- <p>Is ESI Exempt</p> -->
+                        <input type="checkbox" id="toggle-btn2" name="esiExempt" formControlName="esiExempt" (change)="onesiExemptChange($event)">
+                        <label for="toggle-btn2" class="toggle-label"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-20">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-xl-2 col-lg-2 input-section">
+                    <div class="input-name-salary">
+                        <p>Basic:</p>
+                        <input type="text" name="basic" formControlName="basic" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-xl-2 col-lg-2 input-section">
+                    <div class="input-name-salary">
+                        <p>HRA:</p>
+                        <input type="text" name="hra" formControlName="hra" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-xl-2 col-lg-2 input-section">
+                    <div class="input-name-salary">
+                        <p>Living Allowance:</p>
+                        <input type="text" name="livingAllowance" formControlName="livingAllowance" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-xl-2 col-lg-2 input-section">
+                    <div class="input-name-salary">
+                        <p>Conveyance Allowance:</p>
+                        <input type="text" name="conveyanceAllowance" formControlName="conveyanceAllowance" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-xl-2 col-lg-2 input-section">
+                    <div class="input-name-salary">
+                        <p>Production Allowance:</p>
+                        <input type="text" name="productionAllowance" formControlName="productionAllowance" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-xl-2 col-lg-2 input-section">
+                    <div class="input-name-salary">
+                        <p>Medical Allowance:</p>
+                        <input type="text" name="medicalAllowance" formControlName="medicalAllowance" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-xl-2 col-lg-2 input-section">
+                    <div class="input-name-salary">
+                        <p>Gross Pay:</p>
+                        <input type="text" name="grossPay" formControlName="grossPay" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-xl-2 col-lg-2 input-section">
+                    <div class="input-name-salary">
+                        <p>Employee PF:</p>
+                        <input type="text" name="employeePF" formControlName="employeePF" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-xl-2 col-lg-2 input-section">
+                    <div class="input-name-salary">
+                        <p>Employee ESI:</p>
+                        <input type="text" name="employeeESI" formControlName="employeeESI" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-xl-2 col-lg-2 input-section">
+                    <div class="input-name-salary">
+                        <p>Employer PF:</p>
+                        <input type="text" name="employerPF" formControlName="employerPF" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-xl-2 col-lg-2 input-section">
+                    <div class="input-name-salary">
+                        <p>Employer ESI:</p>
+                        <input type="text" name="employerESI" formControlName="employerESI" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-xl-2 col-lg-2 input-section">
+                    <div class="input-name-salary">
+                        <p>Total Deduction:</p>
+                        <input type="text" name="totalDeduction" formControlName="totalDeduction" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-xl-2 col-lg-2 input-section">
+                    <div class="input-name-salary">
+                        <p>Net Pay:</p>
+                        <input type="text" name="netPay" formControlName="netPay" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-xl-2 col-lg-2 input-section">
+                    <div class="input-name-salary">
+                        <p>Annual Bonus:</p>
+                        <input type="text" name="annualBonus" formControlName="annualBonus" class="form-control" >
+                    </div>
+                    
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-xl-2 col-lg-2 input-section">
+                    <div class="input-name-salary">
+                        <p>CTC:</p>
+                        <input type="text" name="ctc" formControlName="ctc" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="submit-section">
+                <button type="submit" class="submit-btn">Save</button>
+            </div>
+        </form>
+    </div>
+   

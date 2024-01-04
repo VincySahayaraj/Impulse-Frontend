@@ -1,0 +1,132 @@
+<div class="heading-common">
+    <h1 class="manage-department">
+        Manage Degree
+    </h1>
+</div>
+
+
+<!-- Add Degree -->
+<div class="add-department">
+    <button class="add-department-btn" (click)="openAddModal(addDegree)">Add Degree</button>
+</div>
+
+<ng-template #addDegree let-modal>
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-basic-title">Add Degree</h3>
+        <span aria-hidden="true" class="close-icon" (click)="modal.dismiss('Cross click')">×</span>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="addDegreeForm" (ngSubmit)="onDegreeSubmit()">
+            <div class="form-group">
+                <label for="qualification" class="dep-label">Qualification</label>
+                <select type="text" class="form-control" id="qualification" formControlName="qualification">
+                    <option value="" selected>Select Qualification <img src="../../../../../assets/images/down-arrow.png">
+                    </option>
+                    <option value={{qualification.id}} *ngFor="let qualification of this.qualificationDataActive">{{qualification.name}}
+                    </option>
+                </select>
+            </div>
+            <!-- Validation -->
+            <div *ngIf="submitted &&  f.qualification.errors && f.qualification.errors.required" class="invalid-feedback">
+                Qualification is required
+            </div>
+
+            <div class="form-group pt-10">
+                <label for="name" class="dep-label">Degree Name</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <!-- Validation -->
+            <div *ngIf="submitted &&  f.name.errors && f.name.errors.required" class="invalid-feedback">
+                Degree is required.
+            </div>
+            <div *ngIf="submitted &&  f.name.errors && f.name.errors.maxlength" class="invalid-feedback">
+                Degree should only accept 50 characters.
+            </div>
+            <div *ngIf="submitted &&  f.name.errors && f.name.errors.pattern" class="invalid-feedback">
+                Degree should only accept alphabets.Special characters and numbers are not allowed.
+            </div>
+            <div class="modal-footer save-btn">
+                <button type="submit" class="add-department-btn">Save</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<!-- Edit Degree -->
+<ng-template #editDegree let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit Degree</h4>
+        <span aria-hidden="true" class="close-icon" (click)="modal.dismiss('Cross click')">×</span>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="editDegreeForm" (ngSubmit)="editDegreeSubmit()">
+            <div class="form-group">
+                <label for="qualification" class="dep-label">Qualification</label>
+                <select type="text" class="form-control" id="qualification" formControlName="qualification">
+                    <option value="" selected>Select department <img src="../../../../../assets/images/down-arrow.png">
+                    </option>
+                    <option value={{qualification.id}} *ngFor="let qualification of this.qualificationDataActive">{{qualification.name}}
+                    </option>
+                </select>
+            </div>
+            <!-- Validation -->
+            <div *ngIf="submitted &&  g.qualification.errors && g.qualification.errors.required" class="invalid-feedback">
+                Qualification is required
+            </div>
+
+            <div class="form-group pt-10">
+                <label for="name" class="dep-label">Degree Name</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <!-- Validation -->
+            <div *ngIf="submitted &&  g.name.errors && g.name.errors.required" class="invalid-feedback">
+                Degree is required
+            </div>
+            <div *ngIf="submitted &&  g.name.errors && g.name.errors.maxlength" class="invalid-feedback">
+                Degree should only accept 50 characters.
+            </div>
+            <div *ngIf="submitted &&  g.name.errors && g.name.errors.pattern" class="invalid-feedback">
+                Degree should only accept alphabets.Special characters and numbers are not allowed.
+            </div>
+          
+            <div class="modal-footer save-btn">
+                <button type="submit" class="add-department-btn">Save</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<!-- Degree List -->
+<div class="table-emp">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover  table-responsive" *ngIf="this.showdegreeTable">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Degree</th>
+                <th>Qualification</th>
+                <th>Edit</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-content" *ngFor="let degree of this.degreeData;let i=index" >
+                <td>{{i+1}}</td>
+                <td>{{degree.name}}</td>
+                <td>{{degree.qualifications.name}}</td>
+                <td (click)="openEditModal(editDegree,degree.id)" class="pl-30"><img
+                        src="../../../../../assets/images/editIcon.png" *ngIf="degree.isActive===1 ? true:false" class="edit-icon"></td>
+                <td [ngClass]="{'pl-30': degree.isActive===1}"><img src="../../../../../assets/images/delete-icon.png" class="edit-icon" (click)="deleteDegree(degree.id,degree.name)" *ngIf="degree.isActive===1 ? true:false"><span class="dep-activate" *ngIf="degree.isActive=== 0? true:false" (click)="activeDegree(degree.id,degree.name)">Activate</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+</div>
+
+<!-- Loader -->
+<div class="fade show" *ngIf="this.showDepLoader"
+  style="text-align: center; padding-top: calc(100vh / 2); height: 100vh">
+  <i class="spinner-grow spinner-grow-sm"></i>
+  <span class="m-1">Loading...</span>
+</div>

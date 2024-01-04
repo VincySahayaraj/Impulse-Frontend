@@ -1,0 +1,198 @@
+<div class="heading-common">
+    <h1 class="manage-department">
+        Manage Company
+    </h1>
+</div>
+
+<!-- Add company -->
+<div class="add-department">
+    <button class="add-department-btn" (click)="openAddModal(addCompany)">Add Company</button>
+</div>
+
+<ng-template #addCompany let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Company</h4>
+        <span aria-hidden="true" class="close-icon" (click)="modal.dismiss('Cross click')">×</span>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="companyForm" (ngSubmit)="onCompanySubmit()">
+            <div class="form-group  pt-10">
+                <label for="name" class="dep-label">Company Name</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <div *ngIf="submitted &&  f.name.errors && f.name.errors.required" class="invalid-feedback">
+                Company Name is required
+            </div>
+            <div class="form-group  pt-10">
+                <label for="address" class="dep-label">Company Address</label>
+                <input type="text" class="form-control" id="address" formControlName="address">
+            </div>
+            <div *ngIf="submitted &&  f.address.errors && f.address.errors.required" class="invalid-feedback">
+                Company Address is required
+            </div>
+            <div *ngIf="submitted &&  f.address.errors && f.address.errors.maxlength" class="invalid-feedback">
+                Company Address should accept only 50 charcaters.
+            </div>
+            <div class="form-group  pt-10">
+                <label for="cin" class="dep-label">CIN</label>
+                <input type="text" class="form-control" id="cin" formControlName="cin">
+            </div>
+            <div *ngIf="submitted &&  f.cin.errors && f.cin.errors.required" class="invalid-feedback">
+                CIN is required
+            </div>
+            <div *ngIf="submitted &&  f.cin.errors && f.cin.errors.pattern" class="invalid-feedback">
+                Please enter valid CIN.
+            </div>
+            <div *ngIf="submitted &&  f.cin.errors && f.cin.errors.maxlength" class="invalid-feedback">
+                CIN should only accept 50 characters.
+             </div>
+            <div class="form-group  pt-10">
+                <label for="gstin" class="dep-label">GST</label>
+                <input type="text" class="form-control" id="gstin" formControlName="gstin">
+            </div>
+            <div *ngIf="submitted &&  f.gstin.errors && f.gstin.errors.required" class="invalid-feedback">
+                GST is required.
+            </div>
+            <div *ngIf="submitted &&  f.gstin.errors && f.gstin.errors.pattern" class="invalid-feedback">
+                Please enter valid GST.
+            </div>
+            <div *ngIf="submitted &&  f.gstin.errors && f.gstin.errors.maxlength" class="invalid-feedback">
+               GST should only accept 50 characters.
+            </div>
+            <div class="form-group  pt-10">
+                <label for="contactNo" class="dep-label">Contact Number</label>
+                <input type="text" class="form-control" id="contactNo" formControlName="contactNo">
+            </div>
+            <div *ngIf="submitted &&  f.contactNo.errors && f.contactNo.errors.required" class="invalid-feedback">
+                Contact Number is required.
+            </div>
+            <div *ngIf="submitted &&  f.contactNo.errors && f.contactNo.errors.pattern" class="invalid-feedback">
+                Contact Number should accept only 10 numbers.Special characters and alphabets are not allowed.
+            </div>
+            <div *ngIf="submitted &&  f.contactNo.errors && f.contactNo.errors.maxlength" class="invalid-feedback">
+                Contact Number should accept 10 numbers.
+            </div>
+            <div class="modal-footer save-btn">
+                <button type="submit" class="add-department-btn">Save</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<!-- Edit Company -->
+<ng-template #editCompany let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit Company</h4>
+        <span aria-hidden="true" class="close-icon" (click)="modal.dismiss('Cross click')">×</span>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="editCompanyForm" (ngSubmit)="editCompanySubmit()">
+            <div class="form-group">
+                <label for="name" class="dep-label">Company Name</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <div *ngIf="submitted &&  g.name.errors && g.name.errors.required" class="invalid-feedback">
+                Company Name is required
+            </div>
+            <div class="form-group pt-10">
+                <label for="address" class="dep-label">Company Address</label>
+                <input type="text" class="form-control" id="address" formControlName="address">
+            </div>
+            <div *ngIf="submitted &&  g.address.errors && g.address.errors.required" class="invalid-feedback">
+                Company Address is required
+            </div>
+            <div class="form-group pt-10">
+                <label for="cin" class="dep-label">CIN</label>
+                <input type="text" class="form-control" id="cin" formControlName="cin">
+            </div>
+            <div *ngIf="submitted &&  g.cin.errors && g.cin.errors.required" class="invalid-feedback">
+                CIN is required
+            </div>
+            <div *ngIf="submitted &&  g.cin.errors && g.cin.errors.pattern" class="invalid-feedback">
+                Please enter valid CIN.
+            </div>
+            <div *ngIf="submitted &&  g.cin.errors && g.cin.errors.maxlength" class="invalid-feedback">
+                Please enter valid CIN.
+            </div>
+            <div class="form-group pt-10">
+                <label for="gstin" class="dep-label">GST</label>
+                <input type="text" class="form-control" id="gstin" formControlName="gstin">
+            </div>
+            <div *ngIf="submitted &&  g.gstin.errors && g.gstin.errors.required" class="invalid-feedback">
+                GST is required
+            </div>
+            <div *ngIf="submitted &&  g.gstin.errors && g.gstin.errors.pattern" class="invalid-feedback">
+                Please enter valid GST.
+            </div>
+            <div *ngIf="submitted &&  g.gstin.errors && g.gstin.errors.maxlength" class="invalid-feedback">
+                Please enter valid GST.
+            </div>
+           
+            <div class="form-group pt-10">
+                <label for="contactNo" class="dep-label">Contact Number</label>
+                <input type="text" class="form-control" id="contactNo" formControlName="contactNo">
+            </div>
+            <div *ngIf="submitted &&  g.contactNo.errors && g.contactNo.errors.required" class="invalid-feedback">
+                Contact Number is required
+            </div>
+            <div *ngIf="submitted &&  g.contactNo.errors && g.contactNo.errors.pattern" class="invalid-feedback">
+                Contact Number should accept only 10 numbers.Special characters and alphabets are not allowed.
+            </div>
+            <div *ngIf="submitted &&  g.contactNo.errors && g.contactNo.errors.maxlength" class="invalid-feedback">
+                Contact Number should accept 10 numbers.
+            </div>
+            <div class="modal-footer save-btn">
+                <button type="submit" class="add-department-btn" >Save</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+
+<!-- List Companies -->
+<div class="table-emp">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover  table-responsive" *ngIf="this.showDepTable">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Company Name</th>
+                <th>Address</th>
+                <th>CIN</th>
+                <th>GST</th>
+                <th>Contact Number</th>
+                <th>Edit</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-content" *ngFor="let company of this.companyData;let i=index">
+                <td>{{i+1}}</td>
+                <td>{{company.name}}</td>
+                <td>{{company.address}}</td>
+                <td>{{company.cin}}</td>
+                <td>{{company.gstin}}</td>
+                <td>{{company.contactNo}}</td>
+                <!-- show edit when the company is currently active -->
+                <td><img src="../../../../../assets/images/editIcon.png" *ngIf="company.isActive===1 ? true:false" class="edit-icon"
+                        (click)="openEditModal(editCompany,company.id)"></td>
+                <!-- Show the delete and active icons depends on the active status -->
+                <td [ngClass]="{'pl-30': company.isActive===1}"><img
+                        src="../../../../../assets/images/delete-icon.png" class="edit-icon"
+                        (click)="deleteCompany(company.id,company.name)"
+                        *ngIf="company.isActive===1 ? true:false"><span class="dep-activate"
+                        *ngIf="company.isActive=== 0? true:false"  (click)="activateCompany(company.id,company.name)">Activate</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+</div>
+
+<!-- Loader -->
+<div class="fade show" *ngIf="this.showDepLoader"
+  style="text-align: center; padding-top: calc(100vh / 2); height: 100vh">
+  <i class="spinner-grow spinner-grow-sm"></i>
+  <span class="m-1">Loading...</span>
+</div>

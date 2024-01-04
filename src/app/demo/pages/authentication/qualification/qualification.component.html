@@ -1,0 +1,100 @@
+<div class="heading-common">
+    <h1 class="manage-department">
+        Manage Qualification
+    </h1>
+</div>
+<!-- Add Qualification -->
+<div class="add-department">
+    <button class="add-department-btn" (click)="openAddModal(addQualification)">Add Qualification</button>
+</div>
+
+<ng-template #addQualification let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Qualification</h4>
+        <span aria-hidden="true" class="close-icon" (click)="modal.dismiss('Cross click')">×</span>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="qualificationForm" (ngSubmit)="onQualificationSubmit()">
+            <div class="form-group">
+                <label for="name" class="dep-label">Qualification</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <div *ngIf="submitted &&  f.name.errors && f.name.errors.required" class="invalid-feedback">
+                Qualification is required
+            </div>
+            <div *ngIf="submitted &&  f.name.errors && f.name.errors.pattern" class="invalid-feedback">
+                Qualification name should only in alphabets.
+            </div>
+            <div *ngIf="submitted &&  f.name.errors && f.name.errors.maxlength" class="invalid-feedback">
+                Qualification name Should only accept 50 charcters.
+            </div>
+            <div class="modal-footer save-btn">
+                <button type="submit" class="add-department-btn">Save</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<!-- Edit qualification -->
+<ng-template #editQualification let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit Qualification</h4>
+        <span aria-hidden="true" class="close-icon" (click)="modal.dismiss('Cross click')">×</span>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="editqualificationForm" (ngSubmit)="onEditQualificationSubmit()">
+            <div class="form-group">
+                <label for="name" class="dep-label">Qualification</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <div *ngIf="submitted &&  g.name.errors && g.name.errors.required" class="invalid-feedback">
+                Qualification is required
+            </div>
+            <div *ngIf="submitted &&  g.name.errors && g.name.errors.pattern" class="invalid-feedback">
+                Qualification name should only in alphabets.
+            </div>
+            <div *ngIf="submitted &&  g.name.errors && g.name.errors.maxlength" class="invalid-feedback">
+                Qualification name Should only accept 50 charcters.
+            </div>
+            <div class="modal-footer save-btn">
+                <button type="submit" class="add-department-btn">Save</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<!-- Qualification list -->
+<div class="table-emp">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover  table-responsive" *ngIf="showqualificationTable">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Qualification</th>
+                <th>Edit</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-content" *ngFor="let qualification of this.qualificationData;let i=index">
+                <td>{{i+1}}</td>
+                <td>{{qualification.name}}</td>
+                <!-- show edit when the qualification is currently active -->
+                <td><img src="../../../../../assets/images/editIcon.png" *ngIf="qualification.isActive===1 ? true:false" class="edit-icon"
+                    (click)="openEditModal(editQualification,qualification.id)"></td>
+                <!-- Show the delete and active icons depends on the active status -->
+                <td [ngClass]="{'pl-30': qualification.isActive===1}"><img src="../../../../../assets/images/delete-icon.png" class="edit-icon" (click)="deleteQualification(qualification.id,qualification.name)" *ngIf="qualification.isActive===1 ? true:false"><span class="dep-activate" *ngIf="qualification.isActive=== 0? true:false" (click)="activateQualification(qualification.id,qualification.name)">Activate</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+</div>
+
+<!-- Loader -->
+<div class="fade show" *ngIf="this.showDepLoader"
+  style="text-align: center; padding-top: calc(100vh / 2); height: 100vh">
+  <i class="spinner-grow spinner-grow-sm"></i>
+  <span class="m-1">Loading...</span>
+</div>

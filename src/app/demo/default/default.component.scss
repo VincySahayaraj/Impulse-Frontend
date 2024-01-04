@@ -1,0 +1,16 @@
+.nav-tabs {
+  border-bottom: none !important;
+}
+.avtar:not([class*='bg-']) {
+  background: rgba(0, 0, 0, 0.15);
+}
+.card-1{
+  align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-text{
+  font-size: 20px;
+}

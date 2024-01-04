@@ -1,0 +1,173 @@
+<div class="heading-common">
+    <h1 class="manage-department">
+        Manage Designation
+    </h1>
+</div>
+<!-- Add Designation -->
+<div class="add-department">
+    <button class="add-department-btn" (click)="openAddModal(addDesignation)">Add Designation</button>
+</div>
+
+<ng-template #addDesignation let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Designation</h4>
+        <span aria-hidden="true" class="close-icon" (click)="modal.dismiss('Cross click')">×</span>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="designationForm" (ngSubmit)="onDesignationSubmit()">
+            <div class="form-group">
+                <label for="departement" class="dep-label">Designation</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <div *ngIf="submitted &&  f.name.errors && f.name.errors.required" class="invalid-feedback">
+                Designation is required
+            </div>
+            <div *ngIf="submitted &&  f.name.errors && f.name.errors.pattern" class="invalid-feedback">
+                Designation should accept only alphabets.Special characters and numbers are not allowed.
+            </div>
+            <div *ngIf="submitted &&  f.name.errors && f.name.errors.maxlength" class="invalid-feedback">
+                Designation should accept only 50 characters.
+            </div>
+
+            <div class="form-group pt-10">
+                <label for="departement" class="dep-label">Department Name</label>
+                <select type="text" class="form-control" id="department" formControlName="department">
+                    <option value="" selected>Select department <img
+                            src="../../../../../assets/images/down-arrow.png">
+                    </option>
+                    <option value={{department.id}} *ngFor="let department of this.departmentDataActive">
+                        {{department.name}}
+                    </option>
+                </select>
+            </div>
+            <div *ngIf="submitted &&  f.department.errors && f.department.errors.required"
+                class="invalid-feedback">
+                Department is required.
+            </div>
+
+            <div class="form-group pt-10">
+                <label for="departement" class="dep-label">Sub Department Name</label>
+                <select type="text" class="form-control" id="subDepartment" formControlName="subDepartment">
+                    <option value="" selected>Select Sub department <img
+                            src="../../../../../assets/images/down-arrow.png">
+                    </option>
+                    <option value={{subdepartment.id}} *ngFor="let subdepartment of this.subdepartmentDataActive">
+                        {{subdepartment.name}}
+                    </option>
+                </select>
+            </div>
+            <div *ngIf="submitted &&  f.subDepartment.errors && f.subDepartment.errors.required"
+                class="invalid-feedback">
+                Sub Department is required
+            </div>
+            <div class="modal-footer save-btn">
+                <button type="submit" class="add-department-btn">Save</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<!-- Edit Designation -->
+<ng-template #editDesignation let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit Designation</h4>
+        <span aria-hidden="true" class="close-icon" (click)="modal.dismiss('Cross click')">×</span>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="editdesignationForm" (ngSubmit)="onEditDesignationSubmit()">
+            <div class="form-group">
+                <label for="departement" class="dep-label">Designation</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <!-- validation -->
+            <div *ngIf="submitted &&  g.name.errors && g.name.errors.required" class="invalid-feedback">
+                Designation is required.
+            </div>
+            <div *ngIf="submitted &&  g.name.errors && g.name.errors.pattern" class="invalid-feedback">
+                Designation should accept only alphabets.Special characters and numbers are not allowed.
+            </div>
+            <div *ngIf="submitted &&  g.name.errors && g.name.errors.maxlength" class="invalid-feedback">
+                Designation should accept only 50 characters.
+            </div>
+
+            <div class="form-group pt-10">
+                <label for="departement" class="dep-label">Department Name</label>
+                <select type="text" class="form-control" id="department" formControlName="department">
+                    <option value="" selected>Select department <img
+                            src="../../../../../assets/images/down-arrow.png">
+                    </option>
+                    <option value={{department.id}} *ngFor="let department of this.departmentDataActive">
+                        {{department.name}}
+                    </option>
+                </select>
+            </div>
+            <!-- validation -->
+            <div *ngIf="submitted &&  g.department.errors && g.department.errors.required"
+                class="invalid-feedback">
+                Department is required.
+            </div>
+            <div class="form-group pt-10">
+                <label for="departement" class="dep-label">Sub Department Name</label>
+                <select type="text" class="form-control" id="subDepartment" formControlName="subDepartment">
+                    <option value="" selected>Select Sub department <img
+                            src="../../../../../assets/images/down-arrow.png">
+                    </option>
+                    <option value={{subdepartment.id}} *ngFor="let subdepartment of this.subdepartmentDataActive">
+                        {{subdepartment.name}}
+                    </option>
+                </select>
+            </div>
+            <!-- Validation -->
+            <div *ngIf="submitted &&  g.subDepartment.errors && g.subDepartment.errors.required"
+                class="invalid-feedback">
+                Sub Department is required
+            </div>
+            <div class="modal-footer save-btn">
+                <button type="submit" class="add-department-btn">Save</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<!-- Designation list -->
+<div class="table-emp">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover  table-responsive" *ngIf="this.showDesignationTable">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Designation</th>
+                <th>Department</th>
+                <th>Sub Department</th>
+                <th>Edit</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-content" *ngFor="let designation of this.designationData;let i=index" >
+                <td>{{i+1}}</td>
+                <td>{{designation.name}}</td>
+                <td>{{designation.department.name}}</td>
+                <td>{{designation.subDepartment.name}}</td>
+                <!-- show edit when the designation is currently active -->
+                <td><img src="../../../../../assets/images/editIcon.png" *ngIf="designation.isActive===1 ? true:false" class="edit-icon"
+                    (click)="openEditModal(editDesignation,designation.id)"></td>
+                <!-- Show the delete and active icons depends on the active status -->
+                <td [ngClass]="{'pl-30': designation.isActive===1}"><img src="../../../../../assets/images/delete-icon.png"
+                    class="edit-icon" (click)="deleteDesignation(designation.id,designation.name)"
+                    *ngIf="designation.isActive===1 ? true:false"><span class="dep-activate"
+                    *ngIf="designation.isActive=== 0? true:false" (click)="activateDesignation(designation.id,designation.name)">Activate</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+</div>
+
+<!-- Loader -->
+<div class="fade show" *ngIf="this.showDepLoader"
+  style="text-align: center; padding-top: calc(100vh / 2); height: 100vh">
+  <i class="spinner-grow spinner-grow-sm"></i>
+  <span class="m-1">Loading...</span>
+</div>

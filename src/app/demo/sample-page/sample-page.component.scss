@@ -1,0 +1,151 @@
+p {
+    font-family: Lato;
+  }
+  
+  .accordion {
+    padding: 16px;
+    border: 2px solid;
+    margin: 8px 0;
+    cursor: pointer;
+  }
+  
+  div.panel {
+       overflow: hidden;
+      height: 0; opacity: 0;
+      transition: height 0.5s ease, opacity 0.5s ease;
+  }
+  
+  div.panel.show {
+       height: auto; opacity: 1;
+      transition: height 0.5s ease, opacity 0.5s ease;
+      
+  }
+  
+  @keyframes fade_in_show {
+       0% {
+            opacity: 0;
+       }
+       100% {
+            opacity: 1;
+       }
+  }
+
+  div.invalid-feedback{
+    background-color: red;
+  }
+
+  .accordion{
+    border-radius:10px;
+    background-image: url('../../../assets/images/arrow/down-arrow.png');
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-position: 99%;
+    background-size: 27px;
+    font-size: 20px;
+    border: 2px solid #e1d8f1;
+   
+  }
+  .active{
+    background-image: url('../../../assets/images/up-arrow.png');
+    background-repeat: no-repeat;
+    background-position: 99%;
+    background-size: 26px;
+  }
+.acc-content{
+    margin-top: 20px;
+}
+  .first-column{
+    padding: 0px 60px;
+  }
+
+  .form-value{
+    display: flex;
+    align-items: center;
+    padding:10px 0px;
+    label{
+        width:200px;
+    }
+    
+  }
+
+  .dropdown-arrow{
+
+    background-image: url('../../../assets/images/arrow/down-arrow.png');
+    background-repeat: no-repeat;
+    background-position: 98%;
+    background-size: 17px;
+  }
+  .submit-btn{
+    color: #673ab7;
+    border-color: #e1d8f1;
+    background-color: #e1d8f1;
+    width: 200px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 18px;
+  }
+  .submit-btn:hover{
+    background-color:#673ab7;
+    color:#fff;
+    box-shadow: 1px 16px 32px #000;
+  }
+  .submit-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+.add-form-exp{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+  .add-exp-btn{
+ 
+    background-color: #e1d8f1;
+    border:none;
+    border-radius: 2px ;
+    color:#673ab7;
+    font-size: 23px;
+  }
+.delete-form{
+    position: absolute;
+    right: 70px;
+}
+
+.experience-formArray{
+    margin-bottom: 10px;
+    margin-top: 50px;
+}
+  .delete-btn {
+    background-color: #e1d8f1;
+    border:none;
+    border-radius: 2px ;
+    color:#673ab7;
+    padding: 6px;
+    border-radius: 7px;
+    img{
+        width:25px;
+          }
+  }
+  .full-row{
+    position: relative;
+  }
+.education-sno{
+    position: absolute;
+    margin-bottom: 0px;
+    top: 8%;
+    font-size: 20px;
+    width:50px;
+}
+.exp-sno{
+    position: absolute;
+    margin-bottom: 0px;
+    top: 5%;
+    font-size: 20px;
+    width:50px;
+}
+  #delete-btn_0{
+    visibility: hidden;
+  }
+

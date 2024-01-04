@@ -1,0 +1,105 @@
+<div class="heading-common">
+    <h1 class="manage-department">
+        Manage Location
+    </h1>
+</div>
+
+<div class="add-department">
+    <button class="add-department-btn" (click)="openAddModal(addLocation)">Add Location</button>
+</div>
+
+<ng-template #addLocation let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Location</h4>
+        <!-- <button type="button" class="close" aria-label="Close" >
+    </button> -->
+        <span aria-hidden="true" class="close-icon" (click)="modal.dismiss('Cross click')">×</span>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="locationForm" (ngSubmit)="onLocationSubmit()">
+            <div class="form-group">
+                <label for="name" class="dep-label">Location</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <div *ngIf="submitted &&  f.name.errors && f.name.errors.required" class="invalid-feedback">
+                Location is required.
+            </div>
+            <div *ngIf="submitted &&  f.name.errors && f.name.errors.maxlength" class="invalid-feedback">
+                Location should only accept 50 characters.
+            </div>
+            <div *ngIf="submitted &&  f.name.errors && f.name.errors.pattern" class="invalid-feedback">
+                Location should only accept alphabets.Special characters and numbers are not allowed.
+            </div>
+            <div class="modal-footer save-btn">
+                <button type="submit" class="add-department-btn">Save</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+
+<!--Edit Location-->
+<ng-template #editLocation let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit Location</h4>
+        <span aria-hidden="true" class="close-icon" (click)="modal.dismiss('Cross click')">×</span>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="editlocationForm" (ngSubmit)="editLocationSubmit()">
+            <div class="form-group">
+                <label for="name" class="dep-label">Location</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <div *ngIf="submitted &&  g.name.errors && g.name.errors.required" class="invalid-feedback">
+                Location is required
+            </div>
+            <div *ngIf="submitted &&  g.name.errors && g.name.errors.maxlength" class="invalid-feedback">
+                Location should only accept 50 characters.
+            </div>
+            <div *ngIf="submitted &&  g.name.errors && g.name.errors.pattern" class="invalid-feedback">
+                Location should only accept alphabets.Special characters and numbers are not allowed.
+            </div>
+            <div class="modal-footer save-btn">
+                <button type="submit" class="add-department-btn">Save</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<div class="table-emp">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover  table-responsive" *ngIf="this.showLocationTable">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Location</th>
+                <th>Edit</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-content" *ngFor="let location of this.locationData;let i=index">
+                <td>{{i+1}}</td>
+                <td>{{location.name}}</td>
+                <td (click)="openEditModal(editLocation,location.id)"><img
+                        src="../../../../../assets/images/editIcon.png" *ngIf="location.isActive===1 ? true:false"
+                        class="edit-icon"></td>
+                <td [ngClass]="{'pl-30': location.isActive===1}"><img src="../../../../../assets/images/delete-icon.png"
+                        class="edit-icon" (click)="deleteLocation(location.id,location.name)"
+                        *ngIf="location.isActive===1 ? true:false"><span class="dep-activate"
+                        *ngIf="location.isActive=== 0? true:false"
+                        (click)="activeLocation(location.id,location.name)">Activate</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+</div>
+
+<!-- Loader -->
+<div class="fade show" *ngIf="this.showDepLoader"
+  style="text-align: center; padding-top: calc(100vh / 2); height: 100vh">
+  <i class="spinner-grow spinner-grow-sm"></i>
+  <span class="m-1">Loading...</span>
+</div>

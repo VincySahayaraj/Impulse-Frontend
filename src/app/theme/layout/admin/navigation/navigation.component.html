@@ -1,0 +1,16 @@
+<!-- [ Sidebar Menu ] start -->
+<nav class="">
+  <div class="navbar-wrapper">
+    <div class="m-header">
+      
+      <!-- [ Header Topbar ] start -->
+      <a [routerLink]="['/default/']" class="b-brand">
+        <!-- ========   change your logo hear   ============ -->
+        <img src="assets/images/impulse1.png" alt="" class="logo logo-lg" />
+        <P (click)="navCollapseMob()">CLOSE</P>
+      </a>
+    </div>
+    <app-nav-content (onNavCollapsedMob)="navCollapseMob()" class="scroll-div w-100 compact"></app-nav-content>
+  </div>
+</nav>
+<!-- [ Sidebar Menu ] end -->

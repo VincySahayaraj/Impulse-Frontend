@@ -1,0 +1,106 @@
+<div class="heading-common">
+    <h1 class="manage-department">
+        Manage Department
+    </h1>
+</div>
+
+<!-- add department -->
+<div class="add-department">
+    <button class="add-department-btn" (click)="openAddModal(addDepartemnt)">Add Department</button>
+</div>
+
+<ng-template #addDepartemnt let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Department</h4>
+        <span aria-hidden="true" class="close-icon" (click)="modal.dismiss('Cross click')">×</span>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="departmentForm" (ngSubmit)="onDepartmentSubmit()">
+            <div class="form-group">
+                <label for="name" class="dep-label">Department Name</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <div *ngIf="submitted &&  f.name.errors && f.name.errors.required" class="invalid-feedback">
+                Department Name is required
+            </div>
+            <div *ngIf="submitted &&  f.name.errors && f.name.errors.pattern" class="invalid-feedback">
+                Department name should be in Alphabets.
+            </div>
+            <div *ngIf="submitted &&  f.name.errors && f.name.errors.maxlength" class="invalid-feedback">
+                Only 50 characters are allowed.
+            </div>
+            <div class="modal-footer save-btn">
+                <button type="submit" class="add-department-btn">Save</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<!-- Edit Department -->
+<ng-template #editDepartment let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit Department</h4>
+        <span aria-hidden="true" class="close-icon" (click)="modal.dismiss('Cross click')">×</span>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="editDepartmentForm" (ngSubmit)="editDepartmentSubmit()">
+            <div class="form-group">
+                <label for="departement" class="dep-label">Department</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <div *ngIf="submitted &&  editform.name.errors && editform.name.errors.required" class="invalid-feedback">
+                Department Name is required
+            </div>
+            <div *ngIf="submitted &&  editform.name.errors && editform.name.errors.pattern" class="invalid-feedback">
+                Department name should be in Alphabets.
+            </div>
+            <div *ngIf="submitted &&  editform.name.errors && editform.name.errors.maxlength" class="invalid-feedback">
+                Only 50 characters are allowed.
+            </div>
+            <div class="modal-footer save-btn">
+                <button type="submit" class="add-department-btn">Save</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+
+<!-- List Departments -->
+<div class="table-emp">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover  table-responsive" *ngIf="this.showDepTable">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Department</th>
+                <th>Edit</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-content" *ngFor="let department of this.departmentData;let i=index">
+                <td>{{i+1}}</td>
+                <td>{{department.name}}</td>
+                <!-- show edit when the department is currently active -->
+                <td><img src="../../../../../assets/images/editIcon.png"  *ngIf="department.isActive===1 ? true:false" class="edit-icon"
+                        (click)="openEditModal(editDepartment,department.id)"></td>
+                <!-- Show the delete and active icons depends on the active status -->
+                <td [ngClass]="{'pl-30': department.isActive===1}"><img
+                        src="../../../../../assets/images/delete-icon.png" class="edit-icon"
+                        (click)="deleteDepartment(department.id,department.name)"
+                        *ngIf="department.isActive===1 ? true:false"><span class="dep-activate" (click)="activeDepartment(department.id,department.name)"
+                        *ngIf="department.isActive=== 0? true:false">Activate</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+</div>
+
+<!-- Loader -->
+<div class="fade show" *ngIf="this.showDepLoader"
+  style="text-align: center; padding-top: calc(100vh / 2); height: 100vh">
+  <i class="spinner-grow spinner-grow-sm"></i>
+  <span class="m-1">Loading...</span>
+</div>

@@ -1,0 +1,808 @@
+
+
+<!-- <div class="toggle-container">
+   
+    <input type="checkbox" id="toggle-btn" (change)="onToggleChange($event.target)">
+    <label for="toggle-btn" class="toggle-label"></label>
+  </div> -->
+<div class="toggle-btn">
+    <!-- <p>{{this.tableView ? 'Tile View':'Grid View'}}</p> -->
+    <p>Grid View</p>
+    <app-toggle-button [tableView] (myOutput) ="GetChildData($event)"></app-toggle-button>
+</div>
+
+<div class="row"    [ngClass]="!this.tableView ? 'showDesktop' : 'showMobile'"  >
+    <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4 " *ngFor="let emp of this.employeeData;let i=index">
+      <app-card cardTitle="">
+        <div class="edit-icon">
+            <img src="../../../../../../assets/images/editIcon.png"/>
+        </div>
+        <div class="avatar-icon">
+            <img src={{url}}{{emp.profilepath}}/>
+        </div>
+        <div class="card-content">
+            <p class="name">{{emp.firstName}}</p>
+            <p class="designation">{{emp.designation.name}}</p>
+            <p class="emp-code">
+                {{emp.code}}
+               </p>
+        </div>
+      </app-card>
+    </div>
+    <!-- <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+           
+          </app-card>
+      </div>
+      <div class="col-sm-4 col-xl-2 col-lg-3 col-md-3 col-xs-4">
+        <app-card cardTitle="">
+            <div class="edit-icon">
+                <img src="../../../../../../assets/images/editIcon.png"/>
+            </div>
+            <div class="avatar-icon">
+                <img src="../../../../../../assets/images/user/avatar-1.jpg"/>
+            </div>
+            <div class="card-content">
+                <p class="name">Vincy</p>
+                <p class="designation">Software Developer</p>
+                <p class="emp-code">
+                    ECESISCARE/TVM/HR/2021/311
+                   </p>
+            </div>
+          </app-card>
+      </div> -->
+  </div>
+
+  <div  class="desktop-table" *ngIf="this.tableView">
+    <app-gridemployee [employeeData]="employeeData"></app-gridemployee>
+  </div>

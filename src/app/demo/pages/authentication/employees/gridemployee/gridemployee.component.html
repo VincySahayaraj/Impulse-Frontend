@@ -1,0 +1,22 @@
+<div class="table-emp">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover  table-responsive">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Employee Code</th>
+                <th>Name</th>
+                <th>Designation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-content" *ngFor="let emp of this.employeeData;let i=index">
+                <td>{{i+1}}</td>
+                <td>{{emp.code}}</td>
+                <td>{{emp.firstName}}</td>
+                <td>{{emp.designation.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+</div>

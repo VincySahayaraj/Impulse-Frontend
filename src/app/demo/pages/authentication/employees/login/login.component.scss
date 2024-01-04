@@ -1,0 +1,36 @@
+.impulse-logo{
+    width: 100px;
+}
+.impulse-home{
+    // background: url(../../../../../../assets/images/background-impulse.jpg);
+    background: url(../../../../../../assets/images/minimalistic-city-office.jpg);
+    background-repeat: no-repeat;
+   width:100%;
+    background-size: 100% 100%;
+}
+.auth-form {
+    background: none;
+}
+.invalid-feedback{
+    display: flex;
+    justify-content:center;
+}
+
+
+.userInput{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .otp-inp{
+    margin: 10px;
+    height: 35px;
+    width: 65px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    font-family: arimo;
+    font-size: 1.2rem;
+    background: #eef2f3;
+  
+  }

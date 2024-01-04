@@ -1,0 +1,578 @@
+<!-- <hello name="{{ name }}"></hello> -->
+
+<!-- Employee Form -->
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+  <!-- Personal Details -->
+  <div formGroupName="personal">
+    <div class="accordion">Personal Details</div>
+    <div class="panel">
+      <div class="row acc-content">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-xl-6 col-lg-6 first-column">
+
+          <!-- First Name -->
+          <div class="form-group  form-value">
+            <label for="FirstName">First Name</label>
+            <input type="text" name="FirstName" formControlName="FirstName" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.FirstName').errors.required">
+              First Name is required
+            </div>
+          </div>
+
+          <!-- Blood Group -->
+          <div class="form-group  form-value">
+            <label for="BloodGroup">Blood Group</label>
+            <select name="BloodGroup" formControlName="BloodGroup" class="form-control dropdown-arrow">
+              <option disabled>Select Blood Group</option>
+              <option *ngFor="let blood of BloodGroupList" [value]="blood">{{blood}}</option>
+            </select>
+          </div>
+
+          <!-- Gender -->
+          <div class="form-group  form-value">
+            <label for="Gender">Gender</label>
+            <!-- <input type="checkbox" name="Gender" formControlName="Gender" class="form-control"> -->
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="Gender" name="Gender" id="male"
+                value="Male">
+              <label class="form-check-label" for="male">
+                Male
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="Gender" name="Gender" id="female"
+                value="Female">
+              <label class="form-check-label" for="female">
+                Female
+              </label>
+            </div>
+            <div *ngIf="submitted && this.myForm.get('about.Gender').errors.required">
+              Gender is required
+            </div>
+          </div>
+
+          <!-- DOB(Official) -->
+          <div class="form-group  form-value">
+            <label for="OfficialDOB">DOB(Official)</label>
+            <input type="Date" name="OfficialDOB" formControlName="OfficialDOB" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.OfficialDOB').errors.required">
+              DOB (Official) is required
+            </div>
+          </div>
+
+          <!-- DOB(Actual) -->
+          <div class="form-group form-value">
+            <label for="ActualDOB">DOB(Actual)</label>
+            <input type="Date" name="ActualDOB" formControlName="ActualDOB" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.ActualDOB').errors.required">
+              DOB (Actual) is required
+            </div>
+          </div>
+
+          <!-- Personal Email Id -->
+          <div class="form-group  form-value">
+            <label for="PersonalEmail">Personal Email ID</label>
+            <input type="text" name="PersonalEmail" formControlName="PersonalEmail" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.PersonalEmail').errors.required">
+              Personal Email is required
+            </div>
+          </div>
+
+          <!-- Offcial Email Id -->
+          <div class="form-group  form-value">
+            <label for="OfficialEmail">Official Email ID</label>
+            <input type="text" name="OfficialEmail" formControlName="OfficialEmail" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.OfficialEmail').errors.required">
+              Official Email is required
+            </div>
+          </div>
+
+          <!-- Contact Number -->
+          <div class="form-group  form-value">
+            <label for="ContactNo">Contact Number</label>
+            <input type="text" name="ContactNo" formControlName="ContactNo" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.ContactNo').errors.required">
+              Contact Number is required
+            </div>
+          </div>
+
+          <!-- Marital Status -->
+          <div class="form-group  form-value">
+            <label for="MaritalStatus">Marital Status</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="MaritalStatus" name="MaritalStatus"
+                id="single" value="Single">
+              <label class="form-check-label" for="single">
+                Single
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="MaritalStatus" name="MaritalStatus"
+                id="married" value="Married">
+              <label class="form-check-label" for="married">
+                Married
+              </label>
+            </div>
+            <div *ngIf="submitted && this.myForm.get('about.MaritalStatus').errors.required">
+              Marital Status is required
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="form-group  form-value">
+            <label for="Address">Address</label>
+            <textarea type="text" name="Address" formControlName="Address" class="form-control">
+            </textarea>
+            <div *ngIf="submitted && this.myForm.get('about.Address').errors.required">
+              Address is required
+            </div>
+          </div>
+
+          <!-- Emergency Contact Person -->
+          <div class="form-group  form-value">
+            <label for="EmergencyContactPerson">Emergency Contact Person</label>
+            <input type="text" name="EmergencyContactPerson" formControlName="EmergencyContactPerson"
+              class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.EmergencyContactPerson').errors.required">
+              Emergency Contact Person is required
+            </div>
+          </div>
+
+          <!-- Emergency Contact Relation -->
+          <div class="form-group  form-value">
+            <label for="EmergencyContactRelation">Emergency Contact Relation</label>
+            <input type="text" name="EmergencyContactRelation" formControlName="EmergencyContactRelation"
+              class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.EmergencyContactRelation').errors.required">
+              Emergency Contact Relation is required
+            </div>
+          </div>
+
+          <!-- Emergency Contact Number -->
+          <div class="form-group  form-value">
+            <label for="EmergencyContactNo">Emergency Contact Number</label>
+            <input type="text" name="EmergencyContactNo" formControlName="EmergencyContactNo" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.EmergencyContactNo').errors.required">
+              Emergency Contact Number is required
+            </div>
+          </div>
+
+          <!-- Aadhar Number -->
+          <div class="form-group  form-value">
+            <label for="AadharNo">Aadhar Number</label>
+            <input type="text" name="AadharNo" formControlName="AadharNo" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.AadharNo').errors.required">
+              Aadhar Number is required
+            </div>
+          </div>
+
+          <!-- Emp Code -->
+          <div class="form-group form-value">
+            <label for="empCode">Employee Code</label>
+            <input type="text" name="Code" formControlName="Code" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.Code').errors.required">
+              Employee Code is required
+            </div>
+          </div>
+
+          <!-- Bank Name -->
+          <div class="form-group  form-value">
+            <label for="BankName">Bank Name</label>
+            <input type="text" name="BankName" formControlName="BankName" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.BankName').errors.required">
+              Bank Name is required
+            </div>
+          </div>
+
+          <!-- Reporting Manager -->
+          <div class="form-group  form-value">
+            <label for="ReportingManager">Reporting Manager</label>
+            <input type="text" name="ReportingManager" formControlName="ReportingManager" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.ReportingManager').errors.required">
+              Reporting Manager is required
+            </div>
+          </div>
+
+          <!-- Incentive type -->
+          <div class="form-group  form-value">
+            <label for="IncentiveType">Incentive type</label>
+            <select name="IncentiveType" formControlName="IncentiveType" class="form-control dropdown-arrow">
+              <option disabled>Select Incedntive Type</option>
+              <option *ngFor="let blood of BloodGroupList" [value]="blood">{{blood}}</option>
+            </select>
+            <div *ngIf="submitted && this.myForm.get('about.IncentiveType').errors.required">
+              Incentive Type is required
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-xl-6 col-lg-6 first-column">
+          <!-- Last Name -->
+          <div class="form-group form-value">
+            <label for="LastName">Last Name</label>
+            <input type="text" name="LastName" formControlName="LastName" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.LastName').errors.required">
+              Last Name is required
+            </div>
+          </div>
+
+          <!-- Bank Branch -->
+          <div class="form-group form-value">
+            <label for="BankBranch">Bank Branch</label>
+            <input type="text" name="BankBranch" formControlName="BankBranch" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.BankBranch').errors.required">
+              Emergency Contact Relation is required
+            </div>
+          </div>
+
+          <!-- Account Number -->
+          <div class="form-group form-value">
+            <label for="AccountNo">Account Number</label>
+            <input type="text" name="AccountNo" formControlName="AccountNo" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.AccountNo').errors.required">
+              Account Number is required
+            </div>
+          </div>
+
+          <!-- IFSC Number -->
+          <div class="form-group form-value">
+            <label for="IFSCNo">IFSC Number</label>
+            <input type="text" name="IFSCNo" formControlName="IFSCNo" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.IFSCNo').errors.required">
+              IFSC Number is required
+            </div>
+          </div>
+
+          <!-- PAN Number -->
+          <div class="form-group form-value">
+            <label for="PanNo">PAN Number</label>
+            <input type="text" name="PanNo" formControlName="PanNo" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.PanNo').errors.required">
+              Pan Number is required
+            </div>
+          </div>
+
+          <!-- PF Number -->
+          <div class="form-group form-value">
+            <label for="PFNo">PF Number</label>
+            <input type="text" name="PFNo" formControlName="PFNo" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.PFNo').errors.required">
+              PF Number is required
+            </div>
+          </div>
+
+          <!-- ESI Number-->
+          <div class="form-group form-value">
+            <label for="ESINo">ESI Number</label>
+            <input type="text" name="ESINo" formControlName="ESINo" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.ESINo').errors.required">
+              ESI Number is required
+            </div>
+          </div>
+
+          <!-- UAN Number -->
+          <div class="form-group form-value">
+            <label for="UANNo">UAN Number</label>
+            <input type="text" name="UANNo" formControlName="UANNo" class="form-control" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.UANNo').errors.required">
+              UAN Number is required
+            </div>
+          </div>
+
+          <!-- Nominee Name -->
+          <div class="form-group form-value">
+            <label for="NomineeName">Nominee Name</label>
+            <input type="text" name="NomineeName" formControlName="NomineeName" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.NomineeName').errors.required">
+              Nominee Name is required
+            </div>
+          </div>
+
+          <!-- Nominee Relation -->
+          <div class="form-group form-value">
+            <label for="NomineeRelation">Nominee Relation</label>
+            <input type="text" name="NomineeRelation" formControlName="NomineeRelation" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.NomineeRelation').errors.required">
+              Nominee Relation is required
+            </div>
+          </div>
+
+          <!-- Department -->
+          <div class="form-group form-value">
+            <label for="DepartmentID">Department</label>
+            <select name="DepartmentID" formControlName="DepartmentID" class="form-control dropdown-arrow">
+              <option disabled>Select Department</option>
+              <option *ngFor="let blood of BloodGroupList" [value]="blood">{{blood}}</option>
+            </select>
+            <div *ngIf="submitted && this.myForm.get('about.DepartmentID').errors.required">
+              Department is required
+            </div>
+          </div>
+
+          <!-- Sub Department -->
+          <div class="form-group form-value">
+            <label for="DepartmentID">Sub Department</label>
+            <select name="SubDepartmentID" formControlName="SubDepartmentID" class="form-control dropdown-arrow">
+              <option disabled>Select Department</option>
+              <option *ngFor="let blood of BloodGroupList" [value]="blood">{{blood}}</option>
+            </select>
+            <div *ngIf="submitted && this.myForm.get('about.SubDepartmentID').errors.required">
+              Sub Department is required
+            </div>
+          </div>
+
+          <!-- Designation -->
+          <div class="form-group form-value">
+            <label for="DesignationID">Designation</label>
+            <select name="DesignationID" formControlName="DesignationID" class="form-control dropdown-arrow">
+              <option disabled selected>Select Designation</option>
+              <option *ngFor="let blood of BloodGroupList" [value]="blood">{{blood}}</option>
+            </select>
+            <div *ngIf="submitted && this.myForm.get('about.DesignationID').errors.required">
+              Designation is required
+            </div>
+          </div>
+
+          <!-- Company -->
+          <div class="form-group form-value">
+            <label for="CompanyID">Company</label>
+            <select name="CompanyID" formControlName="CompanyID" class="form-control dropdown-arrow">
+              <option disabled selected>Select Company</option>
+              <option *ngFor="let blood of BloodGroupList" [value]="blood">{{blood}}</option>
+            </select>
+            <div *ngIf="submitted && this.myForm.get('about.CompanyID').errors.required">
+              Company is required
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div class="form-group form-value">
+            <label for="LocationID">Location</label>
+            <select name="LocationID" formControlName="LocationID" class="form-control dropdown-arrow">
+              <option disabled selected>Select Location</option>
+              <option *ngFor="let blood of BloodGroupList" [value]="blood">{{blood}}</option>
+            </select>
+            <div *ngIf="submitted && this.myForm.get('about.LocationID').errors.required">
+              Location is required
+            </div>
+          </div>
+
+          <!-- Joining Date -->
+          <div class="form-group form-value">
+            <label for="JoiningDate">Joining Date</label>
+            <input type="Date" name="JoiningDate" formControlName="JoiningDate" class="form-control">
+            <div *ngIf="submitted && this.myForm.get('about.JoiningDate').errors.required">
+              Joining Date is required
+            </div>
+          </div>
+
+          <!-- Work Shift -->
+          <div class="form-group form-value">
+            <label for="WorkShift">Work Shift</label>
+            <select name="WorkShift" formControlName="WorkShift" class="form-control dropdown-arrow">
+              <option disabled selected>Select Work shift</option>
+              <option *ngFor="let blood of BloodGroupList" [value]="blood">{{blood}}</option>
+            </select>
+            <div *ngIf="submitted && this.myForm.get('about.WorkShift').errors.required">
+              Work Shift is required
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Education Details -->
+  <div class="accordion">Education details</div>
+  <div class="panel">
+    <div formArrayName="education" *ngFor="let a of myForm.get('education').controls; let i = index">
+      <div [formGroupName]="i" class="experience-formArray">
+        <div class="row full-row">
+          <p class="education-sno">{{i+1}}.</p>
+          <div class="col-xs-12 col-sm-12 col-md-4 col-xl-6 col-lg-6 first-column">
+            <!-- Degree Name -->
+            <div class="form-group form-value">
+              <label for="DegreeID">Degree Name</label>
+              <input type="text" name="DegreeID" formControlName="DegreeID" class="form-control">
+            </div>
+            <!-- Percentage -->
+            <div class="form-group form-value">
+              <label for="Percentage">Percentage</label>
+              <input type="text" name="Percentage" formControlName="Percentage" class="form-control">
+            </div>
+            <!-- Name of Institution -->
+            <div class="form-group form-value">
+              <label for="InstitutionName">Name of Institution</label>
+              <input type="text" name="InstitutionName" formControlName="InstitutionName" class="form-control">
+            </div>
+            <!-- Qualification Name -->
+            <div class="form-group form-value">
+              <label for="QualificationID">Qualification Name</label>
+              <input type="text" name="QualificationID" formControlName="QualificationID" class="form-control">
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-4 col-xl-6 col-lg-6 first-column">
+            <!-- University Name -->
+            <div class="form-group form-value">
+              <label for="UniversityName">University Name</label>
+              <input type="text" name="UniversityName" formControlName="UniversityName" class="form-control">
+            </div>
+            <!-- Passed Out Year -->
+            <div class="form-group form-value">
+              <label for="PassedOutYear">Passed Out Year</label>
+              <input type="text" name="PassedOutYear" formControlName="PassedOutYear" class="form-control">
+            </div>
+            <!-- Certificate -->
+            <div class="form-group form-value">
+              <label for="Certificate">Certificate</label>
+              <input type="text" name="Certificate" formControlName="Certificate" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Delete button for education -->
+      <div class="delete-form">
+        <button type="button" (click)="removeEducation(i)" class="delete-btn" id="delete-btn_{{i}}">
+          <img src="../../../assets/images/delete-icon.png">
+        </button>
+      </div>
+    </div>
+    <!-- Delete button for education -->
+    <div class="add-form-exp">
+      <button type="button" (click)="addEducation()" class="add-exp-btn">+</button>
+    </div>
+  </div>
+
+
+  <!-- Experience Details -->
+
+  <div class="accordion">Experience Details</div>
+  <div class="panel">
+    <div formArrayName="experience" *ngFor="let a of myForm.get('experience').controls; let i = index">
+      <div [formGroupName]="i" class="experience-formArray">
+        <div class="row full-row">
+          <p class="exp-sno">{{i+1}}.</p>
+          <div class="col-xs-12 col-sm-12 col-md-4 col-xl-6 col-lg-6 first-column">
+            <!-- Type -->
+            <div class="form-group form-value">
+              <label for="type">Type</label>
+              <select name="type" formControlName="type" class="form-control dropdown-arrow">
+                <option disabled selected>Select Work shift</option>
+                <option *ngFor="let blood of BloodGroupList" [value]="blood">{{blood}}</option>
+              </select>
+            </div>
+            <!-- Previous Worked Company -->
+            <div class="form-group form-value">
+              <label for="companyName">Previous Worked Company</label>
+              <input type="text" name="companyName" formControlName="companyName" class="form-control">
+            </div>
+            <!-- Designation -->
+            <div class="form-group form-value">
+              <label for="designationID">Designation</label>
+              <input type="text" name="designationID" formControlName="designationID" class="form-control">
+            </div>
+            <!-- No of years of experience -->
+            <div class="form-group form-value">
+              <label for="yearsOfExperience">No of years of experience</label>
+              <input type="text" name="yearsOfExperience" formControlName="yearsOfExperience" class="form-control">
+            </div>
+            <!-- Start Date in Previous Company -->
+            <div class="form-group form-value">
+              <label for="fromDate">Start Date in Previous Company</label>
+              <input type="Date" name="fromDate" formControlName="fromDate" class="form-control">
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6 col-lg-6 first-column">
+            <!-- Last Working Date in Previous Company -->
+            <div class="form-group form-value">
+              <label for="toDate">Last Working Date in Previous Company</label>
+              <input type="Date" name="toDate" formControlName="toDate" class="form-control">
+            </div>
+            <!-- Location -->
+            <div class="form-group form-value">
+              <label for="Location">Location</label>
+              <input type="text" name="location" formControlName="location" class="form-control">
+            </div>
+            <!-- Reference Employee Name -->
+            <div class="form-group form-value">
+              <label for="referenceName">Reference Employee Name</label>
+              <input type="text" name="referenceName" formControlName="referenceName" class="form-control">
+            </div>
+            <!--  Reference Employee Contact Number-->
+            <div class="form-group form-value">
+              <label for="referenceContactNo">Reference Employee Contact Number</label>
+              <input type="text" name="referenceContactNo" formControlName="referenceContactNo" class="form-control">
+            </div>
+            <!--Experience Certificate -->
+            <div class="form-group form-value">
+              <label for="experienceCertificate">Experience Certificate</label>
+              <input type="text" name="experienceCertificate" formControlName="experienceCertificate"
+                class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+       <!-- Delete button for experience -->
+      <div class="delete-form">
+        <button type="button" (click)="removeExperience(i)" class="delete-btn" id="delete-btn_{{i}}">
+          <img src="../../../assets/images/delete-icon.png">
+        </button>
+      </div>
+    </div>
+    <!-- Add button for experience -->
+    <div class="add-form-exp">
+      <button type="button" (click)="addExperience()" class="add-exp-btn">+</button>
+    </div>
+  </div>
+
+
+  <!-- Reference Details -->
+  <div formGroupName="reference">
+    <div class="accordion">Reference Details</div>
+    <div class="panel">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6 col-lg-6 first-column">
+          <!-- Referred Employee -->
+          <div class="form-group form-value">
+            <label for="Code">Referred Employee</label>
+            <select name="Code" formControlName="Code" class="form-control dropdown-arrow">
+              <option disabled selected>Select Referred Employee</option>
+              <option *ngFor="let blood of BloodGroupList" [value]="blood">{{blood}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6 col-lg-6 first-column">
+          <!-- Referral Date -->
+          <div class="form-group form-value">
+            <label for="ReferralDuration ">Referral Date</label>
+            <input type="Date" name="ReferralDuration" formControlName="ReferralDuration" class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <div class="accordion">SECTION : WORK</div>
+  <div class="panel">
+    <div formArrayName="arr" *ngFor="let a of myForm.get('arr').controls; let i = index">
+      <div [formGroupName]="i" style="margin-bottom: 10px;">
+        <label for="name">Name:</label>
+        <input type="text" name="name" formControlName="name">
+        <br><br>
+        <label for="pay">Pay:</label>
+        <input type="text" name="pay" formControlName="pay">
+      </div>
+    </div>
+
+    <button type="button" (click)="addItem()" style="margin-right: 5px;">Add</button>
+  </div> -->
+
+
+  <!-- submit button -->
+  <div class="submit-section">
+    <button type="submit" class="submit-btn">Submit</button>
+  </div>
+</form>

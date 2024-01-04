@@ -1,0 +1,148 @@
+/* You can add global styles to this file, and also import other style files */
+/**======================================================================
+=========================================================================
+Template Name: berry - Most Complete Bootstrap Admin Template
+Author: CodedThemes
+Support: https://codedthemes.support-hub.io/
+File: style.css
+=========================================================================
+=================================================================================== */
+
+// main framework
+@import 'scss/settings/preset-variables';
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+$pc-body-bg: map-get($preset-colors, 'preset-1', 'body');
+$pc-blue: map-get($preset-colors, 'preset-1', 'primary');
+$pc-secondary: map-get($preset-colors, 'preset-1', 'secondary');
+@import 'scss/settings/custom-variables';
+@import 'scss/settings/theme-variables';
+
+@import 'node_modules/bootstrap/scss/bootstrap';
+// main framework
+@import 'scss/themes/generic';
+@import 'scss/themes/general';
+
+// Layouts
+@import 'scss/themes/layouts/layouts';
+
+// Componants
+@import 'scss/themes/components/components';
+
+// pages
+@import 'scss/themes/pages/page';
+
+@import 'scss/themes/customizer';
+@import 'scss/style-preset.scss';
+
+// fonts
+@import url('scss/fonts/berry/berry-icons.css'); /** custom font icons - berry **/
+@import 'scss/fonts/tabler-icons.min.css';
+
+
+.table-emp #DataTables_Table_0_previous{
+    display: none !important;
+  }
+
+.table-emp #DataTables_Table_0_last{
+    display: none !important;
+  }
+
+
+#DataTables_Table_0{
+    // border:2px solid #673ab7 ;
+    // background:#e1d8f1;
+    // border-radius:10px;
+    // color:#673ab7;
+}
+.sorting{
+    width: auto !important;
+}
+.dataTables_filter{
+    label{
+        font-size: 19px;
+    }
+}
+table.dataTable thead {
+    // color:#673ab7;
+    background:#e1d8f1;
+}
+table.dataTable tbody tr:nth-child(even) {
+    background:#e1d8f1;
+
+}
+
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom:10px;
+}
+.modal-sm {
+    --bs-modal-width: 500px;
+}
+.toast-top-right {
+    top: 50%;
+    right: 38%;
+}
+.pt-10{
+    padding-top:10px;
+}
+.heading-common{
+    display: flex;
+    justify-content: center;
+}
+.edit-icon{
+    width:23px;
+    cursor:pointer;
+}
+.add-department{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    @media(max-width:576px){
+        justify-content: center;
+    }
+}
+
+.add-department-btn{
+    // color: #673ab7;
+    color:#000;
+    border-color: #e1d8f1;
+    background-color: #e1d8f1;
+    width: 160px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 18px;
+    font-weight:500;
+}
+
+.add-department-btn:hover{
+    background-color: #673ab7;
+    color: #fff;
+    box-shadow: 3px 5px 9px #000;
+}
+.dep-label{
+    padding-bottom: 10px;
+}
+.save-btn{
+    display: flex;
+    justify-content: center;
+}
+.invalid-feedback{
+    display: flex;
+    justify-content:center;
+}
+
+.close-icon{
+    font-size:23px;
+    cursor:pointer;
+}
+
+.dep-activate{
+    background: #3ab749;
+    border-radius: 25px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.pl-30{
+    padding-left:30px !important;
+}
+

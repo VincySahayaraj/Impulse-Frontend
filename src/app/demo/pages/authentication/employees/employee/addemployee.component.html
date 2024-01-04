@@ -1,0 +1,950 @@
+<!-- Employee Form -->
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+
+    <!-- Personal Details -->
+    <div formGroupName="personal">
+        <div class="accordion">Personal Details</div>
+        <div class="panel">
+            <div class="row acc-content">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-xl-6 col-lg-6 first-column">
+
+                    <!-- First Name -->
+                    <div class="form-group  form-value">
+                        <label for="FirstName">First Name</label>
+                        <input type="text" name="FirstName" formControlName="FirstName" class="form-control" required>
+                    </div>
+                    <!-- Validation-First Name -->
+                    <div *ngIf="submitted &&  f.personal.controls.FirstName.errors && f.personal.controls.FirstName.errors.required"
+                        class="errorValue">
+                        <div>First Name is required</div>
+                    </div>
+                    <div *ngIf="f.personal.controls.FirstName.errors && f.personal.controls.FirstName.errors.pattern"
+                        class="errorValue">
+                        Should only accepts alphabets
+                    </div>
+                    <div class="errorValue"
+                        *ngIf="f.personal.controls.FirstName.errors && f.personal.controls.FirstName.errors.maxlength">
+                        Should not exceed more than 50 characters
+                    </div>
+                    <div class="errorValue alert-text" *ngIf="checkEmptyFirstName()">
+                        Field should not contain only white spaces.
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="form-group  form-value">
+                        <label for="Gender">Gender</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="Gender" name="Gender"
+                                id="male" value="Male">
+                            <label class="form-check-label" for="male">
+                                Male
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="Gender" name="Gender"
+                                id="female" value="Female">
+                            <label class="form-check-label" for="female">
+                                Female
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Validation-Gender -->
+                    <div *ngIf="submitted &&  f.personal.controls.Gender.errors && f.personal.controls.Gender.errors.required"
+                        class="errorValue">
+                        <div>Gender is required</div>
+                    </div>
+
+                    <!-- Personal Email Id -->
+                    <div class="form-group  form-value">
+                        <label for="PersonalEmail">Personal Email ID</label>
+                        <input type="text" name="PersonalEmail" formControlName="PersonalEmail" class="form-control">
+                    </div>
+                    <!-- Validation-Personal Email-->
+                    <div *ngIf="submitted &&  f.personal.controls.PersonalEmail.errors && f.personal.controls.PersonalEmail.errors.required"
+                        class="errorValue">
+                        Personal Email is required
+                    </div>
+                    <div *ngIf="f.personal.controls.PersonalEmail.errors && f.personal.controls.PersonalEmail.errors.pattern"
+                        class="errorValue">
+                        Invalid email format. Please enter a valid email address without spaces
+                        between letters.
+                    </div>
+                    <div class="errorValue alert-text" *ngIf="checkEmptyPersonalEmail()">
+                        Field should not contain only white spaces.
+                    </div>
+
+                    <!-- DOB(Official) -->
+                    <div class="form-group  form-value">
+                        <label for="OfficialDOB">DOB(Official)</label>
+                        <input type="Date" name="OfficialDOB" formControlName="OfficialDOB" class="form-control">
+                    </div>
+                    <!-- Validation-DOB(Official)-->
+                    <div *ngIf="submitted &&  f.personal.controls.OfficialDOB.errors && f.personal.controls.OfficialDOB.errors.required"
+                        class="errorValue">
+                        <div>DOB(Official) is required</div>
+                    </div>
+
+
+                    <!-- Contact Number -->
+                    <div class="form-group  form-value">
+                        <label for="ContactNo">Contact Number</label>
+                        <input type="text" name="ContactNo" formControlName="ContactNo" class="form-control">
+                    </div>
+                    <!-- Validation-Contact No -->
+                    <div *ngIf="submitted &&  f.personal.controls.ContactNo.errors && f.personal.controls.ContactNo.errors.required"
+                        class="errorValue">
+                        Contact Number is required
+                    </div>
+                    <div class="errorValue" *ngIf="f.personal.controls.ContactNo.errors?.pattern">
+                        Special characters and numbers are not allowed.Should only accept 10 numbers.
+                    </div>
+                    <div class="errorValue alert-text" *ngIf="checkEmptyContactNumber()">
+                        Field should not contain only white spaces.
+                    </div>
+
+                    <!-- PAN Number -->
+                    <div class="form-group form-value">
+                        <label for="PanNo">PAN Number</label>
+                        <input type="text" name="PanNo" formControlName="PanNo" class="form-control">
+                    </div>
+                    <!-- Validation-PAN No -->
+                    <div class="errorValue"
+                        *ngIf="f.personal.controls.PanNo.errors && f.personal.controls.PanNo.errors.pattern">
+                        Invalid PAN Number
+                    </div>
+                    <div class="errorValue alert-text" *ngIf="checkEmptyPanNumber()">
+                        Field should not contain only white spaces.
+                    </div>
+
+                    <!-- Emergency Contact Person -->
+                    <div class="form-group  form-value">
+                        <label for="EmergencyContactPerson">Emergency Contact Person</label>
+                        <input type="text" name="EmergencyContactPerson" formControlName="EmergencyContactPerson"
+                            class="form-control">
+                    </div>
+                     <!-- Validation-Emergency Contact Person -->
+                    <div class="errorValue"
+                        *ngIf="submitted &&  f.personal.controls.EmergencyContactPerson.errors && f.personal.controls.EmergencyContactPerson.errors.maxlength">
+                        Should not exceed more than 50 characters
+                    </div>
+                    <div *ngIf="f.personal.controls.EmergencyContactPerson.errors && f.personal.controls.EmergencyContactPerson.errors.pattern"
+                        class="errorValue">
+                        Should only accepts alphabets
+                    </div>
+                    <div class="errorValue alert-text" *ngIf="checkEmptyEmergencyContactPerson()">
+                        Field should not contain only white spaces.
+                    </div>
+
+                    <!-- Emergency Contact Number -->
+                    <div class="form-group  form-value">
+                        <label for="EmergencyContactNo">Emergency Contact Number</label>
+                        <input type="text" name="EmergencyContactNo" formControlName="EmergencyContactNo"
+                            class="form-control">
+                    </div>
+                     <!-- Validation-Emergency Contact Number -->
+                    <div class="errorValue" *ngIf=" f.personal.controls.EmergencyContactNo.errors?.pattern">
+                        Emergency Contact Number Accepts numbers not alphabets.Should only accept 10 numbers.
+                    </div>
+                    <div class="errorValue alert-text" *ngIf="checkEmptyEmergencyContactNumber()">
+                        Field should not contain only white spaces.
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4 col-xl-6 col-lg-6 first-column">
+                    <!-- Last Name -->
+                    <div class="form-group form-value">
+                        <label for="LastName">Last Name</label>
+                        <input type="text" name="LastName" formControlName="LastName" class="form-control">
+                    </div>
+                    <!-- Validation-Last Name -->
+                    <div *ngIf="submitted && f.personal.controls.LastName.errors && f.personal.controls.LastName.errors.required"
+                        class="errorValue">
+                        <div>Last Name is required</div>
+                    </div>
+                    <div *ngIf="  f.personal.controls.LastName.errors && f.personal.controls.LastName.errors.pattern"
+                        class="errorValue">
+                        Should Only accepts alphabets
+                    </div>
+                    <div *ngIf="submitted && f.personal.controls.LastName.errors && f.personal.controls.LastName.errors.maxlength"
+                        class="errorValue">
+                        <div>Should not exceed more than 50 characters</div>
+                    </div>
+                    <div class="errorValue alert-text" *ngIf="checkEmptyLastName()">
+                        Field should not contain only white spaces.
+                    </div>
+
+                    <!-- Blood Group -->
+                    <div class="form-group  form-value">
+                        <label for="BloodGroup">Blood Group</label>
+                        <select name="BloodGroup" formControlName="BloodGroup" class="form-control dropdown-arrow">
+                            <option disabled>Select Blood Group</option>
+                            <option *ngFor="let blood of BloodGroupList" [value]="blood">{{blood}}</option>
+                        </select>
+                    </div>
+
+                    <!-- Offcial Email Id -->
+                    <div class="form-group  form-value">
+                        <label for="OfficialEmail">Official Email ID</label>
+                        <input type="email" name="OfficialEmail" formControlName="OfficialEmail" class="form-control">
+                    </div>
+                    <!-- Validation-Official Email-->
+                    <div *ngIf="submitted &&  f.personal.controls.OfficialEmail.errors && f.personal.controls.OfficialEmail.errors.required"
+                        class="errorValue">
+                        Official Email is required
+                    </div>
+                    <div class="errorValue"
+                        *ngIf="f.personal.controls.OfficialEmail.errors && f.personal.controls.OfficialEmail.errors.pattern">
+                        Invalid email format. Please enter a valid email address without spaces
+                        between letters.
+                    </div>
+                    <div class="errorValue alert-text" *ngIf="checkEmptyOfficialEmail()">
+                        Field should not contain only white spaces.
+                    </div>
+
+                    <!-- DOB(Actual) -->
+                    <div class="form-group form-value">
+                        <label for="ActualDOB">DOB(Actual)</label>
+                        <input type="Date" name="ActualDOB" formControlName="ActualDOB" class="form-control">
+                    </div>
+                    <!-- Validation-DOB(Actual)-->
+                    <div *ngIf="submitted &&  f.personal.controls.ActualDOB.errors && f.personal.controls.ActualDOB.errors.required"
+                        class="errorValue">
+                        <div>DOB(Actual) is required</div>
+                    </div>
+
+                    <!-- Marital Status -->
+                    <div class="form-group  form-value">
+                        <label for="MaritalStatus">Marital Status</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="MaritalStatus"
+                                name="MaritalStatus" id="single" value="Single">
+                            <label class="form-check-label" for="single">
+                                Single
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="MaritalStatus"
+                                name="MaritalStatus" id="married" value="Married">
+                            <label class="form-check-label" for="married">
+                                Married
+                            </label>
+                        </div>
+                    </div>
+                    <!--  Validation-Marital Status-->
+                    <div *ngIf="submitted &&  f.personal.controls.MaritalStatus.errors && f.personal.controls.MaritalStatus.errors.required"
+                        class="errorValue">
+                        Marital Status is required
+                    </div>
+
+                    <!-- Aadhar Number -->
+                    <div class="form-group  form-value">
+                        <label for="AadharNo">Aadhar Number</label>
+                        <input type="text" name="AadharNo" formControlName="AadharNo" class="form-control">
+                    </div>
+                    <!-- Validation-Aathar No -->
+                    <div *ngIf="submitted &&  f.personal.controls.AadharNo.errors && f.personal.controls.AadharNo.errors.required"
+                        class="errorValue">
+                        Aadhar Number is required
+                    </div>
+                    <div *ngIf="f.personal.controls.AadharNo.errors && f.personal.controls.AadharNo.errors.pattern"
+                        class="errorValue">
+                        Invalid Aadhar Number
+                    </div>
+                    <div class="errorValue alert-text" *ngIf="checkEmptyAadharNumber()">
+                        Field should not contain only white spaces.
+                    </div>
+                    <!-- Emergency Contact Relation -->
+                    <div class="form-group  form-value">
+                        <label for="EmergencyContactRelation">Emergency Contact Relation</label>
+                        <input type="text" name="EmergencyContactRelation" formControlName="EmergencyContactRelation"
+                            class="form-control">
+                    </div>
+                     <!-- Validation-Emergency Contact Relation -->
+                    <div *ngIf="submitted &&  f.personal.controls.EmergencyContactRelation.errors && f.personal.controls.EmergencyContactRelation.errors.maxlength"
+                        class="errorValue">
+                        Should not exceed more than 50 characters
+                    </div>
+                    <div *ngIf="  f.personal.controls.EmergencyContactRelation.errors && f.personal.controls.EmergencyContactRelation.errors.pattern"
+                        class="errorValue">
+                        Should only accepts alphabets
+                    </div>
+                    <div class="errorValue alert-text" *ngIf="checkEmptyEmergencyContactRelation()">
+                        Field should not contain only white spaces.
+                    </div>
+
+                    <!-- Address -->
+                    <div class="form-group  form-value">
+                        <label for="Address">Address</label>
+                        <textarea type="text" name="Address" formControlName="Address" class="form-control">
+                        </textarea>
+                    </div>
+
+                    <!-- Validation-Address -->
+                    <div *ngIf="submitted &&  f.personal.controls.Address.errors && f.personal.controls.Address.errors.required"
+                        class="errorValue">
+                        Address is required
+                    </div>
+                    <div *ngIf="submitted &&  f.personal.controls.Address.errors && f.personal.controls.Address.errors.maxlength"
+                        class="errorValue">
+                        Should not exceed more than 50 characters
+                    </div>
+                    <div class="errorValue alert-text" *ngIf="checkEmptyAddress()">
+                        Field should not contain only white spaces.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Company Details -->
+    <div formGroupName="company">
+        <div class="accordion">Company Details</div>
+        <div class="panel">
+            <div class="row acc-content">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-xl-6 col-lg-6 first-column">
+
+                    <!-- Company -->
+                    <div class="form-group form-value">
+                        <label for="CompanyID">Company</label>
+                        <select name="CompanyID" formControlName="CompanyID" class="form-control dropdown-arrow">
+                            <option disabled selected>Select Company</option>
+                            <option *ngFor="let company of this.allCompanies" [value]="company.id">{{company.name}}</option>
+                        </select>
+                    </div>
+                    <!-- Validation-Company -->
+                    <div *ngIf="submitted &&  f.company.controls.CompanyID.errors && f.company.controls.CompanyID.errors.required"
+                        class="errorValue">
+                        Company is required
+                    </div>
+
+                    <!-- Department -->
+                    <div class="form-group form-value">
+                        <label for="DepartmentID">Department</label>
+                        <select name="DepartmentID" formControlName="DepartmentID" class="form-control dropdown-arrow">
+                            <option disabled>Select Department</option>
+                            <option *ngFor="let department of this.allDepartments" [value]="department.id">{{department.name}}</option>
+                        </select>
+                    </div>
+                    <!--  Validation-Department-->
+                    <div *ngIf="submitted &&  f.company.controls.DepartmentID.errors && f.company.controls.DepartmentID.errors.required"
+                        class="errorValue">
+                        Department is required
+                    </div>
+
+                    <!-- Designation -->
+                    <div class="form-group form-value">
+                        <label for="DesignationID">Designation</label>
+                        <select name="DesignationID" formControlName="DesignationID"
+                            class="form-control dropdown-arrow">
+                            <option disabled selected>Select Designation</option>
+                            <option *ngFor="let designation of this.allDesignation" [value]="designation.id">{{designation.name}}</option>
+                        </select>
+                    </div>
+                    <!--  Validation-Designation-->
+                    <div *ngIf="submitted &&  f.company.controls.DesignationID.errors && f.company.controls.DesignationID.errors.required"
+                        class="errorValue">
+                        Designation is required
+                    </div>
+
+                    <!-- Emp Code -->
+                    <div class="form-group form-value">
+                        <label for="empCode">Employee Code</label>
+                        <input type="text" name="Code" formControlName="Code" class="form-control">
+                    </div>
+                    <!-- Validation-Employee Code -->
+                    <div *ngIf="submitted &&  f.company.controls.Code.errors && f.company.controls.Code.errors.required"
+                        class="errorValue">
+                        Employee Code is required
+                    </div>
+                    <div class="errorValue"
+                        *ngIf="f.company.controls.Code.errors && f.company.controls.Code.errors.maxlength">
+                        Should not exceed more than 50 characters
+                    </div>
+                    <div class="errorValue alert-text" *ngIf="checkEmptyEmpCode()">
+                        Field should not contain only white spaces.
+                    </div>
+
+                    <!-- Incentive type -->
+                    <div class="form-group  form-value">
+                        <label for="IncentiveType">Incentive type</label>
+                        <select name="IncentiveType" formControlName="IncentiveType"
+                            class="form-control dropdown-arrow">
+                            <option disabled>Select Incedntive Type</option>
+                            <option *ngFor="let blood of BloodGroupList" [value]="blood">{{blood}}</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-xl-6 col-lg-6 first-column">
+                    <!-- Location -->
+                    <div class="form-group form-value">
+                        <label for="LocationID">Location</label>
+                        <select name="LocationID" formControlName="LocationID" class="form-control dropdown-arrow">
+                            <option disabled selected>Select Location</option>
+                            <option *ngFor="let location of this.allLocation" [value]="location.id">{{location.name}}</option>
+                        </select>
+                    </div>
+                    <!-- Validation-Location -->
+                    <div *ngIf="submitted &&  f.company.controls.LocationID.errors && f.company.controls.LocationID.errors.required"
+                        class="errorValue">
+                        Location is required
+                    </div>
+                    <div *ngIf="f.company.controls.LocationID.errors && f.company.controls.LocationID.errors.pattern"
+                        class="errorValue">
+                        Should Only accepts alphabets
+                    </div>
+                    <div *ngIf="f.company.controls.LocationID.errors && f.company.controls.LocationID.errors.maxlength"
+                        class="errorValue">
+                        Should not exceed more than 100 characters
+                    </div>
+
+                    <!-- Sub Department -->
+                    <div class="form-group form-value">
+                        <label for="DepartmentID">Sub Department</label>
+                        <select name="SubDepartmentID" formControlName="SubDepartmentID"
+                            class="form-control dropdown-arrow">
+                            <option disabled>Select Department</option>
+                            <option *ngFor="let subdepartments of allSubDepartments" [value]="subdepartments.id">{{subdepartments.name}}</option>
+                        </select>
+                    </div>
+                    <!--  Validation-Sub Department-->
+                    <div *ngIf="submitted &&  f.company.controls.SubDepartmentID.errors && f.company.controls.SubDepartmentID.errors.required"
+                        class="errorValue">
+                        Sub Department is required
+                    </div>
+                    <!-- Reporting Manager -->
+                    <div class="form-group  form-value">
+                        <label for="ReportingManager">Reporting Manager</label>
+                        <select name="ReportingManager" formControlName="ReportingManager"
+                            class="form-control dropdown-arrow">
+                            <option disabled>Select Department</option>
+                            <option *ngFor="let blood of BloodGroupList" [value]="blood">{{blood}}</option>
+                        </select>
+                    </div>
+                    <!-- Validation-Reporting Manager -->
+                    <div *ngIf="submitted &&  f.company.controls.ReportingManager.errors && f.company.controls.ReportingManager.errors.required"
+                        class="errorValue">
+                        Reporting Manager is required
+                    </div>
+                    <!-- Joining Date -->
+                    <div class="form-group form-value">
+                        <label for="JoiningDate">Joining Date</label>
+                        <input type="Date" name="JoiningDate" formControlName="JoiningDate" class="form-control">
+                    </div>
+                    <!-- Validation-Joining Date -->
+                    <div *ngIf="submitted &&  f.company.controls.JoiningDate.errors && f.company.controls.JoiningDate.errors.required"
+                        class="errorValue">
+                        Joining Date is required
+                    </div>
+
+                    <!-- Work Shift -->
+                    <div class="form-group form-value">
+                        <label for="WorkShift">Work Shift</label>
+                        <select name="WorkShift" formControlName="WorkShift" class="form-control dropdown-arrow">
+                            <option disabled selected>Select Work shift</option>
+                            <option *ngFor="let blood of BloodGroupList" [value]="blood">{{blood}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bank Details -->
+    <div formGroupName="bank">
+        <div class="accordion">Bank Details</div>
+        <div class="panel">
+            <div class="row acc-content">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-xl-6 col-lg-6 first-column">
+                    <!-- Bank Name -->
+                    <div class="form-group  form-value">
+                        <label for="BankName">Bank Name</label>
+                        <input type="text" name="BankName" formControlName="BankName" class="form-control">
+                    </div>
+                    <!-- Validation-Bank name -->
+                    <div class="errorValue"
+                        *ngIf="f.bank.controls.BankName.errors && f.bank.controls.BankName.errors.maxlength">
+                        Should not exceed more than 50 characters
+                    </div>
+                    <div *ngIf="  f.bank.controls.BankName.errors && f.bank.controls.BankName.errors.pattern"
+                        class="errorValue">
+                        Should Only accepts alphabets
+                    </div>
+                    <div class="errorValue alert-text" *ngIf="checkEmptyBankName()">
+                        Field should not contain only white spaces.
+                    </div>
+                    <!-- Account Number -->
+                    <div class="form-group form-value">
+                        <label for="AccountNo">Account Number</label>
+                        <input type="text" name="AccountNo" formControlName="AccountNo" class="form-control">
+                    </div>
+                    <!-- Validation- Account Number -->
+                    <div class="errorValue"
+                        *ngIf="f.bank.controls.AccountNo.errors && f.bank.controls.AccountNo.errors.pattern">
+                        Invalid Account Number
+                    </div>
+
+                    <!-- Nominee Name -->
+                    <div class="form-group form-value">
+                        <label for="NomineeName">Nominee Name</label>
+                        <input type="text" name="NomineeName" formControlName="NomineeName" class="form-control">
+                    </div>
+                    <!-- Validation- Nominee Name -->
+                    <div class="errorValue"
+                        *ngIf="f.bank.controls.NomineeName.errors && f.bank.controls.NomineeName.errors.maxlength">
+                        Should not exceed more than 50 characters
+                    </div>
+                    <div *ngIf="  f.bank.controls.NomineeName.errors && f.bank.controls.NomineeName.errors.pattern"
+                        class="errorValue">
+                        Should Only accepts alphabets
+                    </div>
+                    <div class="errorValue alert-text" *ngIf="checkEmptyNomineeName()">
+                        Field should not contain only white spaces.
+                    </div>
+
+                    <!-- PF Number -->
+                    <div class="form-group form-value">
+                        <label for="PFNo">PF Number</label>
+                        <input type="text" name="PFNo" formControlName="PFNo" class="form-control">
+                    </div>
+                    <!-- Validation- PF Number -->
+                    <div class="errorValue" *ngIf="f.bank.controls.PFNo.errors && f.bank.controls.PFNo.errors.pattern">
+                        Invalid PF Number
+                    </div>
+
+
+                    <!-- UAN Number -->
+                    <div class="form-group form-value">
+                        <label for="UANNo">UAN Number</label>
+                        <input type="text" name="UANNo" formControlName="UANNo" class="form-control"
+                            class="form-control">
+                    </div>
+                    <!-- Validation- UAN Number -->
+                    <div class="errorValue"
+                        *ngIf="f.bank.controls.UANNo.errors && f.bank.controls.UANNo.errors.pattern">
+                        Invalid UAN Number
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-xl-6 col-lg-6 first-column">
+
+                    <!-- Bank Branch -->
+                    <div class="form-group form-value">
+                        <label for="BankBranch">Bank Branch</label>
+                        <input type="text" name="BankBranch" formControlName="BankBranch" class="form-control">
+                    </div>
+                    <!-- Validation-Bank Branch -->
+                    <div class="errorValue"
+                        *ngIf="f.bank.controls.BankBranch.errors && f.bank.controls.BankBranch.errors.maxlength">
+                        Should not exceed more than 50 characters
+                    </div>
+                    <div *ngIf="f.bank.controls.BankBranch.errors && f.bank.controls.BankBranch.errors.pattern"
+                        class="errorValue">
+                        Should Only accepts alphabets
+                    </div>
+                    <div class="errorValue alert-text" *ngIf="checkEmptyBranch()">
+                        Field should not contain only white spaces.
+                    </div>
+                    <!-- IFSC Number -->
+                    <div class="form-group form-value">
+                        <label for="IFSCNo">IFSC Number</label>
+                        <input type="text" name="IFSCNo" formControlName="IFSCNo" class="form-control">
+                    </div>
+                    <!-- Validation- IFSC Number -->
+                    <div class="errorValue"
+                        *ngIf="f.bank.controls.IFSCNo.errors && f.bank.controls.IFSCNo.errors.pattern">
+                        Invalid IFSC Number
+                    </div>
+
+                    <!-- Nominee Relation -->
+                    <div class="form-group form-value">
+                        <label for="NomineeRelation">Nominee Relation</label>
+                        <input type="text" name="NomineeRelation" formControlName="NomineeRelation"
+                            class="form-control">
+                    </div>
+                    <!-- Validation-Nominee Relation -->
+                    <div class="errorValue"
+                        *ngIf="f.bank.controls.NomineeRelation.errors && f.bank.controls.NomineeRelation.errors.maxlength">
+                        Should not exceed more than 50 characters
+                    </div>
+                    <div *ngIf="f.bank.controls.NomineeRelation.errors && f.bank.controls.NomineeRelation.errors.pattern"
+                        class="errorValue">
+                        Should Only accepts alphabets
+                    </div>
+                    <div class="errorValue alert-text" *ngIf="checkEmptyNomineeRelation()">
+                        Field should not contain only white spaces.
+                    </div>
+                    <!-- ESI Number-->
+                    <div class="form-group form-value">
+                        <label for="ESINo">ESI Number</label>
+                        <input type="text" name="ESINo" formControlName="ESINo" class="form-control">
+                    </div>
+                    <!-- Validation- ESI Number -->
+                    <div class="errorValue"
+                        *ngIf="f.bank.controls.ESINo.errors && f.bank.controls.ESINo.errors.pattern">
+                        Invalid ESINo Number
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Education Details -->
+    <div class="accordion">Education details</div>
+    <div class="panel">
+        <div formArrayName="education" *ngFor="let a of employeeForm.get('education').controls; let i = index">
+            <div [formGroupName]="i" class="experience-formArray">
+                <div class="row full-row">
+                    <p class="education-sno">{{i+1}}.</p>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-xl-6 col-lg-6 first-column">
+                        <!-- Degree Name -->
+                        <div class="form-group form-value">
+                            <label for="DegreeID">Degree Name</label>
+                            <select name="DegreeID" formControlName="DegreeID" class="form-control dropdown-arrow">
+                                <option disabled selected>Select Degree</option>
+                                <option *ngFor="let degree of this.allDegree" [value]="degree.id">{{degree.name}}</option>
+                            </select>
+                        </div>
+                        <!-- Validation-Degree Name -->
+                        <!-- <div *ngIf="submitted &&  f.education.controls[i].controls.DegreeID.errors && f.education.controls[i].controls.DegreeID.errors.required"
+                            class="errorValue">
+                            Degree Name is required
+                        </div> -->
+                        <!-- Name of Institution -->
+                        <div class="form-group form-value">
+                            <label for="InstitutionName">Name of Institution</label>
+                            <input type="text" name="InstitutionName" formControlName="InstitutionName"
+                                class="form-control">
+                        </div>
+                        <!-- Validation-Percentage -->
+                        <!-- <div *ngIf="submitted &&  f.education.controls[i].controls.InstitutionName.errors && f.education.controls[i].controls.InstitutionName.errors.required"
+                            class="errorValue">
+                            Institution Name is required
+                        </div> -->
+                        <div *ngIf="f.education.controls[i].controls.InstitutionName.errors && f.education.controls[i].controls.InstitutionName.errors.pattern"
+                            class="errorValue">
+                            Special Characters and numbers are not allowed.Only accepts Alphabets.
+                        </div>
+                        <div class="errorValue alert-text" *ngIf="checkEmptyInstituitionName(i)">
+                            Field should not contain only white spaces.
+                        </div>
+                        <!-- Percentage -->
+                        <div class="form-group form-value">
+                            <label for="Percentage">Percentage</label>
+                            <input type="number" min="0" max="100" name="Percentage" formControlName="Percentage"
+                                class="form-control">
+                        </div>
+                        <!-- Validation-Percentage -->
+                        <!-- <div *ngIf="submitted &&  f.education.controls[i].controls.Percentage.errors && f.education.controls[i].controls.Percentage.errors.required"
+                            class="errorValue">
+                            Percentage is required
+                        </div> -->
+                        <div *ngIf=" f.education.controls[i].controls.Percentage.errors && f.education.controls[i].controls.Percentage.errors.Pattern"
+                            class="errorValue">
+                            Only accepts numeric values not alphabets and special characters.
+                        </div>
+
+                        <!-- Certificate -->
+                        <div class="form-group form-value">
+                            <label for="Certificate">Certificate</label>
+                            <input type="file" name="Certificate" formControlName="Certificate" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-xl-6 col-lg-6 first-column">
+                        <!-- Qualification Name -->
+                        <div class="form-group form-value">
+                            <label for="QualificationID">Qualification Name</label>
+                            <select name="QualificationID" formControlName="QualificationID" class="form-control dropdown-arrow">
+                                <option disabled selected>Select qualification</option>
+                                <option *ngFor="let qualification of this.allQualification" [value]="qualification.id">{{qualification.name}}</option>
+                            </select>
+                        </div>
+                        <!-- Validation-Percentage -->
+                        <!-- <div *ngIf="submitted &&  f.education.controls[i].controls.QualificationID.errors && f.education.controls[i].controls.QualificationID.errors.required"
+                            class="errorValue">
+                            Qualification is required
+                        </div> -->
+                        <!-- University Name -->
+                        <div class="form-group form-value">
+                            <label for="UniversityName">University Name</label>
+                            <input type="text" name="UniversityName" formControlName="UniversityName"
+                                class="form-control">
+                        </div>
+                        <!-- Validation-Percentage -->
+                        <!-- <div *ngIf="submitted &&  f.education.controls[i].controls.UniversityName.errors && f.education.controls[i].controls.UniversityName.errors.required"
+                            class="errorValue">
+                            University Name is required
+                        </div> -->
+                        <div *ngIf=" f.education.controls[i].controls.UniversityName.errors && f.education.controls[i].controls.UniversityName.errors.maxlength"
+                            class="errorValue">
+                            Should not exceed more than 100 characters
+                        </div>
+                        <div *ngIf=" f.education.controls[i].controls.UniversityName.errors && f.education.controls[i].controls.UniversityName.errors.pattern"
+                            class="errorValue">
+                            Only accepts numeric values not alphabets and special characters.
+                        </div>
+                        <div class="errorValue alert-text" *ngIf="checkEmptyUniversityName(i)">
+                            Field should not contain only white spaces.
+                        </div>
+                        <!-- Passed Out Year -->
+                        <div class="form-group form-value">
+                            <label for="PassedOutYear">Passed Out Year</label>
+                            <input type="number" min="1991" name="PassedOutYear" formControlName="PassedOutYear"
+                                class="form-control">
+                        </div>
+                        <!-- Validation-Percentage -->
+                        <!-- <div *ngIf="submitted &&  f.education.controls[i].controls.PassedOutYear.errors && f.education.controls[i].controls.PassedOutYear.errors.required"
+                            class="errorValue">
+                            Passed Out Year is required
+                        </div> -->
+
+                    </div>
+                </div>
+            </div>
+            <!-- Delete button for education -->
+            <div class="delete-form">
+                <button type="button" (click)="removeEducation(i)" class="delete-btn" id="delete-btn_{{i}}">
+                    <img src="../../../assets/images/delete-icon.png">
+                </button>
+            </div>
+        </div>
+        <!-- Delete button for education -->
+        <div class="add-form-exp">
+            <button type="button" (click)="addEducation()" class="add-exp-btn">+</button>
+        </div>
+    </div>
+
+
+    <!-- Experience Details -->
+    <div class="accordion">Experience Details</div>
+    <div class="panel">
+        <div formArrayName="experience" *ngFor="let a of employeeForm.get('experience').controls; let i = index">
+            <div [formGroupName]="i" class="experience-formArray">
+                <div class="row full-row">
+                    <p class="exp-sno">{{i+1}}.</p>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-xl-6 col-lg-6 first-column">
+                        <!-- Type -->
+                        <div class="form-group form-value">
+                            <label for="type">Type</label>
+                            <select name="type" formControlName="type" class="form-control dropdown-arrow">
+                                <option disabled selected>Select Work shift</option>
+                                <option *ngFor="let type of typeList" [value]="type">{{type}}</option>
+                            </select>
+                        </div>
+                        <!-- Validation-Type -->
+                        <!-- <div *ngIf="submitted &&  f.experience.controls[i].controls.type.errors && f.experience.controls[i].controls.type.errors.required"
+                            class="errorValue">
+                            Type is required
+                        </div> -->
+
+                        <!-- Designation -->
+                        <div class="form-group form-value">
+                            <label for="designationID">Designation</label>
+                            <input type="text" name="designationID" formControlName="designationID"
+                                class="form-control">
+                        </div>
+                        <!-- Validation-Designation -->
+                        <!-- <div *ngIf="submitted &&  f.experience.controls[i].controls.designationID.errors && f.experience.controls[i].controls.designationID.errors.required"
+                            class="errorValue">
+                            Designation is required
+                        </div> -->
+                        <div class="errorValue alert-text" *ngIf="checkEmptyDesignation(i)">
+                            Field should not contain only white spaces.
+                        </div>
+                        <div *ngIf="f.experience.controls[i].controls.designationID.errors && f.experience.controls[i].controls.designationID.errors.maxlength"
+                            class="errorValue">
+                            Should not exceed more than 50 characters
+                        </div>
+                        <div *ngIf="f.experience.controls[i].controls.designationID.errors && f.experience.controls[i].controls.designationID.errors.pattern"
+                            class="errorValue">
+                            Special Characters and numbers are not allowed.Only accepts Alphabets.
+                        </div>
+
+
+                        <!-- Start Date in Previous Company -->
+                        <div class="form-group form-value">
+                            <label for="fromDate">Start Date</label>
+                            <input type="Date" name="fromDate" formControlName="fromDate" class="form-control">
+                        </div>
+                        <!-- Validation-Start Date in Previous Company -->
+                        <!-- <div *ngIf="submitted &&  f.experience.controls[i].controls.fromDate.errors && f.experience.controls[i].controls.fromDate.errors.required"
+                            class="errorValue">
+                            Start Date is required
+                        </div> -->
+
+                        <!-- Reference Employee Name -->
+                        <div class="form-group form-value">
+                            <label for="referenceName">Reference Employee Name</label>
+                            <input type="text" name="referenceName" formControlName="referenceName"
+                                class="form-control">
+                        </div>
+                         <!-- Validation-Refrence emp conatct number -->
+                        <div class="errorValue alert-text" *ngIf="checkEmptyReferenceName(i)">
+                            Field should not contain only white spaces.
+                        </div>
+                        <div *ngIf="f.experience.controls[i].controls.referenceName.errors && f.experience.controls[i].controls.referenceName.errors.pattern"
+                            class="errorValue">
+                            Special Characters and numbers are not allowed.Only accepts Alphabets.
+                        </div>
+                        <!-- Location -->
+                        <div class="form-group form-value">
+                            <label for="Location">Location</label>
+                            <input type="text" name="location" formControlName="location" class="form-control">
+                        </div>
+                        <!-- Validation-Location -->
+                        <!-- <div *ngIf="submitted &&  f.experience.controls[i].controls.location.errors && f.experience.controls[i].controls.location.errors.required"
+                            class="errorValue">
+                            Location is required
+                        </div> -->
+                        <div *ngIf="f.experience.controls[i].controls.location.errors && f.experience.controls[i].controls.location.errors.pattern"
+                            class="errorValue">
+                            Special Characters and numbers are not allowed.Only accepts Alphabets.
+                        </div>
+                        <div class="errorValue alert-text" *ngIf="checkEmptyLocation(i)">
+                            Field should not contain only white spaces.
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6 col-lg-6 first-column">
+                        <!-- Previous Worked Company -->
+                        <div class="form-group form-value">
+                            <label for="companyName">Company Name</label>
+                            <input type="text" name="companyName" formControlName="companyName" class="form-control">
+                        </div>
+                        <!-- Validation-Previous Worked Company -->
+                        <!-- <div *ngIf="submitted &&  f.experience.controls[i].controls.companyName.errors && f.experience.controls[i].controls.companyName.errors.required"
+                            class="errorValue">
+                            Previous Worked Company is required
+                        </div> -->
+                        <div *ngIf="f.experience.controls[i].controls.companyName.errors && f.experience.controls[i].controls.companyName.errors.pattern"
+                            class="errorValue">
+                            Special Characters and numbers are not allowed.Only accepts Alphabets.
+                        </div>
+                        <div *ngIf="f.experience.controls[i].controls.companyName.errors && f.experience.controls[i].controls.companyName.errors.maxlength"
+                            class="errorValue">
+                            Should not exceed more than 50 characters
+                        </div>
+                        <div class="errorValue alert-text" *ngIf="checkEmptyPrevCompanyName(i)">
+                            Field should not contain only white spaces.
+                        </div>
+                        <!-- No of years of experience -->
+                        <div class="form-group form-value">
+                            <label for="yearsOfExperience">No of years of experience</label>
+                            <input type="number" min="0" name="yearsOfExperience" formControlName="yearsOfExperience"
+                                class="form-control">
+                        </div>
+                        <!-- Validation-No of years of experience -->
+                        <!-- <div *ngIf="submitted &&  f.experience.controls[i].controls.yearsOfExperience.errors && f.experience.controls[i].controls.yearsOfExperience.errors.required"
+                            class="errorValue">
+                            No of years of experience is required
+                        </div> -->
+                        <div *ngIf=" f.experience.controls[i].controls.yearsOfExperience.errors && f.experience.controls[i].controls.yearsOfExperience.errors.Pattern"
+                            class="errorValue">
+                            Only accepts numeric values not alphabets and special characters.
+                        </div>
+                        <!-- Last Working Date in Previous Company -->
+                        <div class="form-group form-value">
+                            <label for="toDate">End Date</label>
+                            <input type="Date" name="toDate" formControlName="toDate" class="form-control">
+                        </div>
+                        <!-- Validation-Last Working Date in Previous Company  -->
+                        <!-- <div *ngIf="submitted &&  f.experience.controls[i].controls.toDate.errors && f.experience.controls[i].controls.toDate.errors.required"
+                            class="errorValue">
+                            End Date is required
+                        </div> -->
+
+                        <!--  Reference Employee Contact Number-->
+                        <div class="form-group form-value">
+                            <label for="referenceContactNo">Reference Employee Contact Number</label>
+                            <input type="text" name="referenceContactNo" formControlName="referenceContactNo"
+                                class="form-control">
+                        </div>
+                        <!-- Validation-Refrence emp conatct number -->
+                        <div *ngIf="f.experience.controls[i].controls.referenceContactNo.errors && f.experience.controls[i].controls.referenceContactNo.errors.pattern"
+                            class="errorValue">
+                            Invalid Contact Number
+                        </div>
+                        <!--Experience Certificate -->
+                        <div class="form-group form-value">
+                            <label for="experienceCertificate">Experience Certificate</label>
+                            <input type="file" name="experienceCertificate" formControlName="experienceCertificate"
+                                class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Delete button for experience -->
+            <div class="delete-form">
+                <button type="button" (click)="removeExperience(i)" class="delete-btn" id="delete-btn_{{i}}">
+                    <img src="../../../assets/images/delete-icon.png">
+                </button>
+            </div>
+        </div>
+        <!-- Add button for experience -->
+        <div class="add-form-exp">
+            <button type="button" (click)="addExperience()" class="add-exp-btn">+</button>
+        </div>
+    </div>
+
+    <!-- Reference Details -->
+    <div formGroupName="reference">
+        <div class="accordion">Reference Details</div>
+        <div class="panel">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6 col-lg-6 first-column">
+                    <!-- Referred Employee -->
+                    <div class="form-group form-value">
+                        <label for="Code">Referred Employee</label>
+                        <select name="Code" formControlName="Code" class="form-control dropdown-arrow">
+                            <option disabled selected>Select Referred Employee</option>
+                            <option *ngFor="let blood of BloodGroupList" [value]="blood">{{blood}}</option>
+                        </select>
+                    </div>
+                    <!-- Validation-Referred Employee -->
+                    <!-- <div *ngIf="submitted &&  f.reference.controls.Code.errors && f.reference.controls.Code.errors.required"
+                        class="errorValue">
+                        Referred Employee is required
+                    </div> -->
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6 col-lg-6 first-column">
+                    <!-- Referral Date -->
+                    <div class="form-group form-value">
+                        <label for="ReferralDuration ">Referral Date</label>
+                        <input type="Date" name="ReferralDuration" formControlName="ReferralDuration"
+                            class="form-control">
+                    </div>
+                    <!-- Validation-Referred Date -->
+                    <!-- <div *ngIf="submitted &&  f.reference.controls.ReferralDuration.errors && f.reference.controls.ReferralDuration.errors.required"
+                        class="errorValue">
+                        Referral Date is required
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- <div class="accordion">SECTION : WORK</div>
+    <div class="panel">
+      <div formArrayName="arr" *ngFor="let a of myForm.get('arr').controls; let i = index">
+        <div [formGroupName]="i" style="margin-bottom: 10px;">
+          <label for="name">Name:</label>
+          <input type="text" name="name" formControlName="name">
+          <br><br>
+          <label for="pay">Pay:</label>
+          <input type="text" name="pay" formControlName="pay">
+        </div>
+      </div>
+  
+      <button type="button" (click)="addItem()" style="margin-right: 5px;">Add</button>
+    </div> -->
+
+
+    <!-- submit button -->
+    <div class="submit-section">
+        <button type="submit" class="submit-btn">Submit</button>
+    </div>
+</form>

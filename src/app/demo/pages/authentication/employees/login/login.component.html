@@ -1,0 +1,80 @@
+<div class="auth-main">
+    <div class="auth-wrapper v3 impulse-home">
+        <div class="auth-form">
+            <div class="card my-5">
+                <div class="card-body">
+                    <a href="#" class="d-flex justify-content-center">
+                        <img src="assets/images/impulse1.png" class="impulse-logo" />
+                    </a>
+                    <div class="row">
+                        <div class="d-flex justify-content-center">
+                            <div class="auth-header">
+                                <h2 class="text-secondary mt-5"><b>Hi, Welcome Back</b></h2>
+                                <p class="f-16 mt-2">Enter Your Credentials</p>
+                                <!-- <p class="f-16 mt-2">{{!this.newUser ? 'Enter Your Credentials':this.errorMsg.result}}
+                                </p> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-floating mb-3" *ngIf="this.isempCode">
+                        <input type="text" class="form-control" id="floatingInput" [(ngModel)]="userName"
+                            name="userName" required />
+                        <label for="floatingInput">Employee Code / Username</label>
+                        <div *ngIf="submitted && !userName" class="invalid-feedback">Username/Employee Code is required.
+                        </div>
+                        <div *ngIf="this.notUser" class="invalid-feedback">Username/Employee Code is not valid.</div>
+                    </div>
+
+                    <div class="form-floating mb-3" *ngIf="this.isExisitingUser">
+                        <input type="password" class="form-control" id="floatingInput" [(ngModel)]="password"
+                            name="password" />
+                        <label for="floatingInput">Password</label>
+                        <div *ngIf="passwordSubmitted && !password" class="invalid-feedback">Password is required.</div>
+                        <div *ngIf="passwordIncorrect" class="invalid-feedback">Invalid Password</div>
+                    </div>
+                    <h5 class="text-secondary" *ngIf="this.isExisitingUser">
+                        <a href="javascript:">Forgot Password?</a>
+                    </h5>
+                    <div class="form-floating mb-3" *ngIf="this.newUser">
+                        <input type="password" class="form-control" id="floatingInput" [(ngModel)]="newPassword"
+                            name="newPassword" />
+                        <label for="floatingInput">New Password</label>
+                        <div *ngIf="newUserSubmitted && !newPassword" class="invalid-feedback">New Password is required.</div>
+                    </div>
+
+                    <div class="form-floating mb-3" *ngIf="this.newUser">
+                        <input type="password" class="form-control" id="floatingInput" [(ngModel)]="confirmPassword"
+                            name="confirmPassword" />
+                        <label for="floatingInput">Confirm Password</label>
+                        <div *ngIf="newUserSubmitted && !confirmPassword" class="invalid-feedback">Confirm Password is
+                            required.</div>
+                    </div>
+
+                    <div class="form-floating mb-3 userInput" *ngIf="this.isOTPAvailable">
+                        <input type="text" id="ist" maxlength="1" class="otp-inp" (keyup)="clickOTP($event, 'sec')">
+                        <input type="text" id="sec" maxlength="1" class="otp-inp" (keyup)="clickOTP($event, 'third')">
+                        <input type="text" id="third" maxlength="1" class="otp-inp"
+                            (keyup)="clickOTP($event, 'fourth')">
+                        <input type="text" id="fourth" maxlength="1" class="otp-inp">
+                    </div>
+
+                    <div class="d-grid mt-4" *ngIf="this.isOTPAvailable">
+                        <button type="button" class="btn btn-secondary" (click)="collectEnteredValues()">Verify</button>
+                    </div>
+                    <div class="d-grid mt-4" *ngIf="this.isempCode">
+                        <button type="button" class="btn btn-secondary"
+                            (click)="this.checkExistingUser(userName)">Next</button>
+                    </div>
+                    <div class="d-grid mt-4" *ngIf="this.newUser">
+                        <button type="button" class="btn btn-secondary"
+                            (click)="checkNewUser(userName,newPassword,confirmPassword)">Get Code</button>
+                    </div>
+                    <div class="d-grid mt-4" *ngIf="this.isExisitingUser">
+                        <button type="button" class="btn btn-secondary"
+                            (click)="this.loginUser(userName,password)">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

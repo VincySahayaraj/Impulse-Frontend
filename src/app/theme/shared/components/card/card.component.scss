@@ -1,0 +1,30 @@
+.card.full-card {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 99999;
+  border-radius: 0;
+  width: calc(100vw) !important;
+  height: 100vh !important;
+}
+
+.card-head{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-head h5{
+  margin: 20px 0px 0px 10px;
+}
+.card{
+  box-shadow: 1px 5px 8px 1px rgb(88 84 84);
+}
+.card .card-block{
+ 
+  @media(max-width:576px){
+    display: flex;
+    padding: 14px 14px;
+
+  }
+}
